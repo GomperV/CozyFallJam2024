@@ -5,17 +5,17 @@ using TMPro;
 public class WavesManager : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text waveText;
+    private TMP_Text waveText, waveSkipTip;
     private EnemySpawner[] enemySpawners;
     public int waveNumber = 0;
     private float enemySpawnRate;
-    private int activeSpawners;
+    private int activeSpawners, spawnersToKill, waitTime;
     // Start is called before the first frame update
     void Start()
     {
         activeSpawners = 0;
         waveNumber = 0;
-        enemySpawnRate = 2f; //how often enemies spawn initially
+        enemySpawnRate = 5f; //how often enemies spawn initially
         enemySpawners = FindObjectsOfType<EnemySpawner>();
         print("EnemySpawners amount: " + enemySpawners.Length);
         StartWave();
@@ -24,7 +24,10 @@ public class WavesManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.S) && waitTime > 3)
+        {
+            waitTime = 3;
+        }
     }
 
     private void StartWave()
@@ -34,21 +37,54 @@ public class WavesManager : MonoBehaviour
         enemySpawnRate = enemySpawnRate - waveNumber / 15; //enemies spawn faster witch each wave
 
         //some funny logic calculating how many spawners are active based on wave number (FOR NOW, might wanna set this manually)
-        if (waveNumber > 2) activeSpawners = Mathf.RoundToInt(0.5f + waveNumber / 2f);
+        if (waveNumber > 2) activeSpawners = Mathf.RoundToInt(0.6f + waveNumber / 2f);
         else activeSpawners = waveNumber;
-
+        spawnersToKill = activeSpawners;
         print(activeSpawners);
 
         print("Enemies will spawn every " + enemySpawnRate + " s.");
         foreach(EnemySpawner spawner in enemySpawners)
         {
             //might wanna make active spawners random
-            while(activeSpawners > 0)
+            if(activeSpawners > 0)
             {
                 spawner.SpawnEnemies(enemySpawnRate);
                 activeSpawners--;
             }
+        }
+    }
+
+    //called by every nest when their hp < 1
+    public void SpawnerDestroyed()
+    {
+        spawnersToKill--;
+        if(spawnersToKill < 1)
+        {
+            StartCoroutine(DelayBetweenWaves());
+        }
+    }
+
+    IEnumerator DelayBetweenWaves()
+    {
+        //delay slightly longer with each wave (for preparations)
+        waitTime = 19 + waveNumber;
+        while(waitTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            waitTime--;
+            waveText.text = "Wave " + (waveNumber + 1) + " in " + waitTime + "s";
+            if (waitTime < 3)
+            {
+                waveSkipTip.text = "";
+            } else
+            {
+                waveSkipTip.text = "Press 's' to skip";
+            }
             
         }
+        waveSkipTip.text = "Destroy all active Ice crystals!";
+        StartWave();
+        
+
     }
 }

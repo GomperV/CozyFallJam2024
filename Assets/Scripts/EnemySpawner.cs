@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnEnemies(float spawnRate)
     {
+        GetComponent<EnemyNestHealth>().health = 100;
+        GetComponent<EnemyNestHealth>().nestDestroyed = false;
         isSpawning = true;
         timeBetweenSpawns = spawnRate;
         StartCoroutine(SpawnWithDelay());
@@ -27,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
         while(isSpawning)
         {
             yield return new WaitForSeconds(timeBetweenSpawns);
+            if (!isSpawning) break;
             Instantiate(enemyBeetle, transform.position, Quaternion.identity);
         }
         
