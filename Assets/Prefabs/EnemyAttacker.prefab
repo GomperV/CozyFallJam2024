@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1055400757694346760}
   - component: {fileID: -1563738523888273484}
   m_Layer: 0
-  m_Name: EnemyBeetle
+  m_Name: EnemyAttacker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
