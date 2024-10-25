@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyDefenderMovement : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject PunktB, PunktA;
+    public GameObject PunktB, PunktA;
     private Rigidbody2D rb;
     private Transform currentPoint;
     public float patrolSpeed;

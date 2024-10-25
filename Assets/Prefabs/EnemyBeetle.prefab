@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBase: {fileID: 0}
-  movementSpeed: 1
+  movementSpeed: 0.5
   baseDamage: 0
 --- !u!114 &1055400757694346760
 MonoBehaviour:
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  damageDone: 0
+  damage: 25
 --- !u!50 &-1563738523888273484
 Rigidbody2D:
   serializedVersion: 4
