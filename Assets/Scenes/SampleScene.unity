@@ -2641,6 +2641,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3583079535798744034, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: ui
+      value: 
+      objectReference: {fileID: 1538671382}
+    - target: {fileID: 3583079535798744034, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: segments.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5565071947881612259, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3149,17 +3157,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1555150488 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6214224878106394470, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
-  m_PrefabInstance: {fileID: 1241821355}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d3e1485a41d3e49b07793868728653, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1597643875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3997,7 +3994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8d6ec41689fab4da0648732f8671db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerExp: {fileID: 1555150488}
   waveText: {fileID: 1176433523}
   waveSkipTip: {fileID: 913717655}
   waveNumber: 0

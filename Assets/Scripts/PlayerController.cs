@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-using TriInspector;
-
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,14 +12,20 @@ public class PlayerController : MonoBehaviour
     public Transform playerRoot;
     public Sprite normalSegmentSprite;
     public Sprite brokenSegmentSprite;
+    public float invulnerabilityDuration = 1f;
 
     [Header("Speed boost")]
     public float boostDuration = 1f;
     public float boostAmount = 2f;
     public float boostCooldown = 3f;
 
+    [Header("Game UI")]
+    public UIManager ui;
+
     private float _lastBoost = -999f;
+    private float _lastHit = -999f;
     private List<SpriteRenderer> _segmentSprites;
+    private int _health;
 
     void Start()
     {
@@ -30,23 +34,40 @@ public class PlayerController : MonoBehaviour
         {
             _segmentSprites.Add(segments[i].GetComponentInChildren<SpriteRenderer>());
         }
+        _health = segments.Count;
     }
 
-    [Button]
-    public void SetHealthDisplay(int missingHealth)
+    public void DamagePlayer()
     {
+        if(Time.time > _lastHit + invulnerabilityDuration)
+        {
+            _lastHit = Time.time;
+            _health = Mathf.Clamp(_health - 1, 0, 99);
+            SetHealthDisplay();
+
+            if(_health <= 0)
+            {
+                ui.GameLost();
+            }
+        }
+    }
+
+    public void SetHealthDisplay()
+    {
+        int missingHealth = segments.Count - _health;
         for(int i = 0; i < segments.Count; i++)
         {
             _segmentSprites[i].sprite = i < missingHealth ? brokenSegmentSprite : normalSegmentSprite;
         }
     }
 
-    [Button]
     public void AddSegment()
     {
         GameObject segment = Instantiate(segmentPrefab, playerRoot);
         segments.Add(segment);
         _segmentSprites.Add(segment.GetComponentInChildren<SpriteRenderer>());
+        _health++;
+        SetHealthDisplay();
     }
 
     void Update()

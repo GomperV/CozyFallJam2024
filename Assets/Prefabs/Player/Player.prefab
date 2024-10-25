@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5156124383735712398}
   m_Layer: 7
   m_Name: Hurtbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -82,7 +82,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3583079535798744034}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: DamagePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3952169407067227777
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,15 +148,18 @@ MonoBehaviour:
   - {fileID: 3139373480176836663}
   - {fileID: 8564291986845397390}
   - {fileID: 2907498100296265401}
+  - {fileID: 0}
   moveSpeed: 5
   segmentDistance: 0.8
   segmentPrefab: {fileID: 2242172010375170207, guid: e050b3e969ae3804f9cb385fdcca24ef, type: 3}
   playerRoot: {fileID: 6976624486131800759}
-  normalSegmentSprite: {fileID: 21300000, guid: 74df218d9c728904d9aceb45f549d40c, type: 3}
-  brokenSegmentSprite: {fileID: 21300000, guid: 02b01cf1639af0845bd31cb7bfcc0927, type: 3}
+  normalSegmentSprite: {fileID: 21300000, guid: a218b7f344564174c8a85d7dfd4f92a6, type: 3}
+  brokenSegmentSprite: {fileID: 21300000, guid: 4d1d1eeb3fcf524419eef712c7a0d3bb, type: 3}
+  invulnerabilityDuration: 1
   boostDuration: 0.5
   boostAmount: 5
   boostCooldown: 3
+  ui: {fileID: 0}
 --- !u!114 &3254974162192623666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,13 +249,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7760534096955845483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.86602545, w: 0.49999994}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1102863447105331978}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &8830620386699694397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -281,8 +296,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 82672c7265dbfd443a85a579a2654f00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
