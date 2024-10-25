@@ -105,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: a218b7f344564174c8a85d7dfd4f92a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -129,6 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c99ec35da62a2b4990e10eb96beef7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wobbleSize: 0.2
+  wobbleSize: 0.15
   wobbleSpeed: 5
   offset: 0
