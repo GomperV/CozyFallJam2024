@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Sprite normalSegmentSprite;
     public Sprite brokenSegmentSprite;
     public float invulnerabilityDuration = 1f;
+    public int startingHealth = 5;
 
     [Header("Speed boost")]
     public float boostDuration = 1f;
@@ -30,11 +31,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _segmentSprites = new List<SpriteRenderer>();
-        for(int i = 0; i < segments.Count; i++)
+        _health = 0;
+        for(int i = 0; i < startingHealth; i++)
         {
-            _segmentSprites.Add(segments[i].GetComponentInChildren<SpriteRenderer>());
+            AddSegment();
         }
-        _health = segments.Count;
     }
 
     public void DamagePlayer()
@@ -66,6 +67,9 @@ public class PlayerController : MonoBehaviour
         GameObject segment = Instantiate(segmentPrefab, playerRoot);
         segments.Add(segment);
         _segmentSprites.Add(segment.GetComponentInChildren<SpriteRenderer>());
+        segment.transform.localScale = Vector3.one*((8f - segments.Count)/15f + 7f/15f);
+        var wobble = segment.GetComponentInChildren<SegmentWobble>();
+        wobble.offset = segments.Count*0.1f;
         _health++;
         SetHealthDisplay();
     }

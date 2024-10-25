@@ -10,6 +10,7 @@ public class EnemyNestHealth : MonoBehaviour
     private GameObject UI;
     private WavesManager wavesManager;
     public bool nestDestroyed = false;
+    public SpriteRenderer nestSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +35,15 @@ public class EnemyNestHealth : MonoBehaviour
         baseHealthText.text = "" + health + "%";
         if (health > 99f)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            nestSprite.color = new Color(1f, 1f, 1f, 1f);
         }else if (health < 50f && health >= 1f)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            nestSprite.color = new Color(1f, 1f, 1f, 0.5f);
         }
         else if (health < 1f)
         {
             GetComponent<EnemySpawner>().isSpawning = false;
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.25f);
+            nestSprite.color = new Color(1f, 1f, 1f, 0.25f);
         }
 
     }

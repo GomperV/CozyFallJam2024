@@ -20,14 +20,8 @@ public class EnemyDefenderMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentPoint == PunktB.transform)
-        {
-            rb.velocity = new Vector2(patrolSpeed, 0);
-        }
-        else
-        {
-            rb.velocity = new Vector2(-patrolSpeed, 0);
-        }
+        rb.velocity = (currentPoint.position - transform.position).normalized*patrolSpeed;
+
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PunktB.transform)
         {
             currentPoint = PunktA.transform;
@@ -36,9 +30,8 @@ public class EnemyDefenderMovement : MonoBehaviour
                 transform.Rotate(0f, 180f, 0f);
                 facingRight = false;
             }
-
-
         }
+
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PunktA.transform)
         {
             currentPoint = PunktB.transform;

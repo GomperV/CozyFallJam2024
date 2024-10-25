@@ -12,6 +12,7 @@ public class EnemyCombat : MonoBehaviour
     private bool damageDone = false;
     private GameObject player;
     private PlayerExperience playerExp;
+    public SpriteRenderer sprite;
     void Start()
     {
         player = GameObject.Find("Player");
@@ -39,12 +40,12 @@ public class EnemyCombat : MonoBehaviour
         //healthText.text = "" + health + "%";
         if (health < 75f)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.75f);
+            sprite.color = new Color(1f, 1f, 1f, 0.75f);
         }
         else if (health < 25f)
         {
             GetComponent<EnemySpawner>().isSpawning = false;
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            sprite.color = new Color(1f, 1f, 1f, 0.5f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
