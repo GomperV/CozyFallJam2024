@@ -302,6 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   damage: 25
+  sprite: {fileID: 222563259293857307}
 --- !u!50 &-1563738523888273484
 Rigidbody2D:
   serializedVersion: 4
