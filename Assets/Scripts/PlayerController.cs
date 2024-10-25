@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             ActivateSpeedBoost();
         }
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         float speed = GetMoveSpeed();
 
         // Only move and rotate the character when its far enough away to prevent jitter
-        if(Vector3.Distance(mousePos, head.transform.position) > 0.2f)
+        if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > 0.2f)
         {
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
             head.transform.position = Vector3.MoveTowards(head.transform.position, mousePos, speed*Time.deltaTime);
