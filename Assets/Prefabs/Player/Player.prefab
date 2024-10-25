@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5156124383735712398}
   m_Layer: 7
   m_Name: Hurtbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -82,7 +82,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3583079535798744034}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: DamagePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3952169407067227777
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,9 +155,11 @@ MonoBehaviour:
   playerRoot: {fileID: 6976624486131800759}
   normalSegmentSprite: {fileID: 21300000, guid: a218b7f344564174c8a85d7dfd4f92a6, type: 3}
   brokenSegmentSprite: {fileID: 21300000, guid: 4d1d1eeb3fcf524419eef712c7a0d3bb, type: 3}
+  invulnerabilityDuration: 1
   boostDuration: 0.5
   boostAmount: 5
   boostCooldown: 3
+  ui: {fileID: 0}
 --- !u!114 &3254974162192623666
 MonoBehaviour:
   m_ObjectHideFlags: 0
