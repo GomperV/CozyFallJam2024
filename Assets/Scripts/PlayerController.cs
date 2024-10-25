@@ -1,11 +1,19 @@
+using System.Collections.Generic;
+
+using TriInspector;
+
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject head;
-    public GameObject[] segments;
+    public List<GameObject> segments;
     public float moveSpeed = 5f;
     public float segmentDistance = 3f;
+    public GameObject segmentPrefab;
+    public Transform playerRoot;
+    public Sprite normalSegmentSprite;
+    public Sprite brokenSegmentSprite;
 
     [Header("Speed boost")]
     public float boostDuration = 1f;
@@ -13,15 +21,37 @@ public class PlayerController : MonoBehaviour
     public float boostCooldown = 3f;
 
     private float _lastBoost = -999f;
+    private List<SpriteRenderer> _segmentSprites;
 
     void Start()
     {
-        
+        _segmentSprites = new List<SpriteRenderer>();
+        for(int i = 0; i < segments.Count; i++)
+        {
+            _segmentSprites.Add(segments[i].GetComponentInChildren<SpriteRenderer>());
+        }
+    }
+
+    [Button]
+    public void SetHealthDisplay(int missingHealth)
+    {
+        for(int i = 0; i < segments.Count; i++)
+        {
+            _segmentSprites[i].sprite = i < missingHealth ? brokenSegmentSprite : normalSegmentSprite;
+        }
+    }
+
+    [Button]
+    public void AddSegment()
+    {
+        GameObject segment = Instantiate(segmentPrefab, playerRoot);
+        segments.Add(segment);
+        _segmentSprites.Add(segment.GetComponentInChildren<SpriteRenderer>());
     }
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             ActivateSpeedBoost();
         }
@@ -31,19 +61,19 @@ public class PlayerController : MonoBehaviour
         float speed = GetMoveSpeed();
 
         // Only move and rotate the character when its far enough away to prevent jitter
-        if(Vector3.Distance(mousePos, head.transform.position) > 0.2f)
+        if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > 0.2f)
         {
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
             head.transform.position = Vector3.MoveTowards(head.transform.position, mousePos, speed*Time.deltaTime);
             head.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
-        if(segments.Length > 0)
+        if(segments.Count > 0)
         {
             MoveSegmentTowards(segments[0].transform, head.transform, speed);
         }
 
-        for(int i = 1; i < segments.Length; i++)
+        for(int i = 1; i < segments.Count; i++)
         {
             MoveSegmentTowards(segments[i].transform, segments[i - 1].transform, speed);
         }
