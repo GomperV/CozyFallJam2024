@@ -10,6 +10,8 @@ public class WavesManager : MonoBehaviour
     public int waveNumber = 0;
     private float enemySpawnRate;
     private int activeSpawners, spawnersToKill, waitTime;
+    private GameObject player;
+    private PlayerExperience playerExp;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,8 @@ public class WavesManager : MonoBehaviour
         waveNumber = 0;
         enemySpawnRate = 5f; //how often enemies spawn initially
         enemySpawners = FindObjectsOfType<EnemySpawner>();
+        player = GameObject.Find("Player");
+        playerExp = player.GetComponent<PlayerExperience>();
         print("EnemySpawners amount: " + enemySpawners.Length);
         StartWave();
     }
@@ -33,6 +37,7 @@ public class WavesManager : MonoBehaviour
     private void StartWave()
     {
         waveNumber++;
+        
         waveText.text = "WAVE " + waveNumber;
         enemySpawnRate = enemySpawnRate - waveNumber / 15; //enemies spawn faster witch each wave
 
@@ -60,6 +65,7 @@ public class WavesManager : MonoBehaviour
         spawnersToKill--;
         if(spawnersToKill < 1)
         {
+            if (waveNumber > 0) playerExp.GainExperience(30 + waveNumber * 10, true);
             StartCoroutine(DelayBetweenWaves());
         }
     }
@@ -67,6 +73,7 @@ public class WavesManager : MonoBehaviour
     IEnumerator DelayBetweenWaves()
     {
         //delay slightly longer with each wave (for preparations)
+
         waitTime = 19 + waveNumber;
         while(waitTime > 0)
         {

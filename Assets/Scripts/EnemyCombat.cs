@@ -10,8 +10,12 @@ public class EnemyCombat : MonoBehaviour
     // Start is called before the first frame update
     public float damage = 25f;
     private bool damageDone = false;
+    private GameObject player;
+    private PlayerExperience playerExp;
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerExp = player.GetComponent<PlayerExperience>();
         damage = 25f;
         health = 50f;
     }
@@ -26,6 +30,7 @@ public class EnemyCombat : MonoBehaviour
 
     public void OnDie()
     {
+        playerExp.GainExperience(10, false);
         Destroy(gameObject);
     }
     // Update is called once per frame
