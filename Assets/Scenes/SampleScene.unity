@@ -2029,6 +2029,10 @@ PrefabInstance:
       propertyPath: ui
       value: 
       objectReference: {fileID: 1538671382}
+    - target: {fileID: 4143042493681958474, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5565071947881612259, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2486,7 +2490,7 @@ GameObject:
   - component: {fileID: 1584539988}
   m_Layer: 0
   m_Name: Foreground Image
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
