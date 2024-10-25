@@ -8,8 +8,11 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField]
     //private TMP_Text healthText;
     // Start is called before the first frame update
+    public float damage = 25f;
+    private bool damageDone = false;
     void Start()
     {
+        damage = 25f;
         health = 50f;
     }
     public void TakeDamage(float dmg)
@@ -39,5 +42,15 @@ public class EnemyCombat : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerBase") && !damageDone)
+        {
+            damageDone = true;
+            PlayerBaseHealth pb = collision.GetComponent<PlayerBaseHealth>();
+            pb.TakeDamage(damage);
 
+            Destroy(gameObject);
+        }
+    }
 }
