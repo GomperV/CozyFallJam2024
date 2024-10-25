@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PunktB: {fileID: 0}
   PunktA: {fileID: 0}
-  patrolSpeed: 2
+  patrolSpeed: 120
 --- !u!1 &6817335799665357336
 GameObject:
   m_ObjectHideFlags: 0
