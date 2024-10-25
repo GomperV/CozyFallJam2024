@@ -7,12 +7,12 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField]
     private GameObject fireball;
     private bool canFire = true;
-    private float timer;
+    private float timer, health;
     private float timeBetweenFiring = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
-
+        health = 100;
     }
 
     // Update is called once per frame

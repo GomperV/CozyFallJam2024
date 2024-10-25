@@ -9,10 +9,11 @@ public class PlayerBaseHealth : MonoBehaviour
     private TMP_Text baseHealthText;
     [SerializeField]
     private UIManager ui;
-
+    private float timer, regenAmount;
     // Start is called before the first frame update
     void Start()
     {
+        regenAmount = 1f;
         //UI = GameObject.Find("UI");
         baseHealth = 100;
     }
@@ -37,6 +38,12 @@ public class PlayerBaseHealth : MonoBehaviour
         {
             baseHealthText.color = Color.white;
         }
+            timer += Time.deltaTime;
+            if (timer > 2 && baseHealth <100)
+            {
+                baseHealth += regenAmount;
+                timer = 0;
+            }
     }
 
 }
