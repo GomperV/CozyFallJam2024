@@ -23,10 +23,18 @@ public class PlayerController : MonoBehaviour
     [Header("Game UI")]
     public UIManager ui;
 
+    [Header("Upgrades")]
+    public List<string> upgradesOwned;
+
     private float _lastBoost = -999f;
     private float _lastHit = -999f;
     private List<SpriteRenderer> _segmentSprites;
     private int _health;
+
+    private void Awake()
+    {
+        upgradesOwned = new();
+    }
 
     void Start()
     {
@@ -132,5 +140,18 @@ public class PlayerController : MonoBehaviour
             Vector3 targetWithMargin = target.position - (Vector3)direction*segmentDistance;
             segment.position = Vector3.MoveTowards(segment.position, targetWithMargin, speed);
         }
+    }
+
+    public void ApplyUpgrade(UpgradeData data)
+    {
+        if(data.id == "healing")
+        {
+            _health = Mathf.Min(segments.Count, _health + 2);
+            SetHealthDisplay();
+            // healing is a repeating upgrade, don't add it to the list
+            return;
+        }
+
+        upgradesOwned.Add(data.id);
     }
 }

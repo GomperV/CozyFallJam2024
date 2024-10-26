@@ -13,6 +13,7 @@ public class UpgradesObject : ScriptableObject
 [Serializable]
 public struct UpgradeData
 {
+    public bool repeatable;
     public Sprite sprite;
     public string id;
     public string title;
