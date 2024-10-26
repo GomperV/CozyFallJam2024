@@ -11,6 +11,9 @@ public class EnemyNestHealth : MonoBehaviour
     private WavesManager wavesManager;
     public bool nestDestroyed = false;
     public SpriteRenderer nestSprite;
+    public float flameDamageCooldown = 0.1f;
+
+    private float _lastFlameHit = -999f;
 
     private void Awake()
     {
@@ -30,12 +33,33 @@ public class EnemyNestHealth : MonoBehaviour
         health -= dmg;
         if (health < 1f)
         {
-            nestDestroyed = true;
-            wavesManager.SpawnerDestroyed();
+            DestroyNest();
         }
     }
 
-    // Update is called once per frame
+    private void DestroyNest()
+    {
+        health = 0f;
+        nestDestroyed = true;
+        wavesManager.SpawnerDestroyed();
+    }
+
+    public void TakeFlamethrowerDamage()
+    {
+        if(Time.time <= _lastFlameHit + flameDamageCooldown || nestDestroyed)
+        {
+            return;
+        }
+
+        health -= 10f;
+        _lastFlameHit = Time.time;
+
+        if(health < 1)
+        {
+            DestroyNest();
+        }
+    }
+
     void Update()
     {
         baseHealthText.text = "" + health + "%";

@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 public class EnemyCombat : MonoBehaviour
 {
     public float health;
-    [SerializeField]
-    //private TMP_Text healthText;
-    // Start is called before the first frame update
-    public float damage = 25f;
+    [SerializeField] public float damage = 25f;
+    public SpriteRenderer sprite;
+    public float flameDamageCooldown = 0.1f;
+
     private bool damageDone = false;
     private GameObject player;
     private PlayerExperience playerExp;
-    public SpriteRenderer sprite;
+
+    private float _lastFlameHit = -999f;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -29,15 +29,28 @@ public class EnemyCombat : MonoBehaviour
         }
     }
 
+    public void TakeFlamethrowerDamage()
+    {
+        if(Time.time > _lastFlameHit + flameDamageCooldown)
+        {
+            health -= 10f;
+            _lastFlameHit = Time.time;
+
+            if(health < 1)
+            {
+                OnDie();
+            }
+        }
+    }
+
     public void OnDie()
     {
         playerExp.GainExperience(10, false);
         Destroy(gameObject);
     }
-    // Update is called once per frame
+
     void Update()
     {
-        //healthText.text = "" + health + "%";
         if (health < 75f)
         {
             sprite.color = new Color(1f, 1f, 1f, 0.75f);

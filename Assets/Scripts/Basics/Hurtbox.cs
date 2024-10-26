@@ -7,4 +7,5 @@ using UnityEngine.Events;
 public class Hurtbox : MonoBehaviour
 {
     public UnityEvent<GameObject> hit;
+    public UnityEvent<GameObject> continuousHit;
 }

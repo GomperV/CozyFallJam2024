@@ -98,6 +98,7 @@ MonoBehaviour:
   health: 50
   damage: 25
   sprite: {fileID: 5475453450661178074}
+  flameDamageCooldown: 0.1
 --- !u!50 &2163282182159901677
 Rigidbody2D:
   serializedVersion: 4
@@ -213,7 +214,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 13526533, guid: 55a2fd0e269fd87459751b170db415a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -306,6 +307,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  continuousHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7624381108141357315}
+        m_TargetAssemblyTypeName: EnemyCombat, Assembly-CSharp
+        m_MethodName: TakeFlamethrowerDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &5973013432804385571
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -387,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTag: Player
+  canHitTerrain: 0
   hit:
     m_PersistentCalls:
       m_Calls: []
