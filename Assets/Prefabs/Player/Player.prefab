@@ -256,7 +256,7 @@ MonoBehaviour:
   brokenSegmentSprite: {fileID: 21300000, guid: 4d1d1eeb3fcf524419eef712c7a0d3bb, type: 3}
   invulnerabilityDuration: 1
   startingHealth: 3
-  desiredDistanceToMouse: 1
+  desiredDistanceToMouse: 0.1
   boostDuration: 0.5
   boostAmount: 5
   boostCooldown: 3
@@ -303,7 +303,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &8270229215021927653
