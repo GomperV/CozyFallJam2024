@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
     public float left, top, right, bottom;
     public Transform followTarget;
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 pos = followTarget.position;
 

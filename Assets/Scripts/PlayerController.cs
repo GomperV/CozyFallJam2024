@@ -30,10 +30,12 @@ public class PlayerController : MonoBehaviour
     private float _lastHit = -999f;
     private List<SpriteRenderer> _segmentSprites;
     private int _health;
+    private Rigidbody2D _rb;
 
     private void Awake()
     {
         upgradesOwned = new();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -97,8 +99,13 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > 0.2f)
         {
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
-            head.transform.position = Vector3.MoveTowards(head.transform.position, mousePos, speed*Time.deltaTime);
+            _rb.velocity = (mousePos - head.transform.position).normalized*speed;
+            //head.transform.position = Vector3.MoveTowards(head.transform.position, mousePos, speed*Time.deltaTime);
             head.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+        else
+        {
+            _rb.velocity = Vector3.zero;
         }
 
         if(segments.Count > 0)
