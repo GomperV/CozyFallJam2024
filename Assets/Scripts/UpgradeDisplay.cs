@@ -13,6 +13,8 @@ public class UpgradeDisplay : MonoBehaviour
 
     public void AddUpgrade(UpgradeData data)
     {
+        if(data.repeatable) return;
+
         var ui = Instantiate(upgradeItemPrefab, uiRoot);
         ui.image.sprite = data.sprite;
     }
