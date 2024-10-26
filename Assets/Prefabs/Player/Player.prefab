@@ -261,6 +261,8 @@ MonoBehaviour:
   boostCooldown: 3
   ui: {fileID: 0}
   upgradesOwned: []
+  flamethrowerHitbox: {fileID: 2035129096929385137}
+  flamethrowerMovementMultiplier: -0.09
 --- !u!114 &3254974162192623666
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,7 +27,9 @@ public class PlayerCombat : MonoBehaviour
                 timer = 0;
             }
         }
-        if (Input.GetButton("Fire2") && canFire)
+
+        // TODO: automatically fire at the nearest enemy when you have the pumpkin lantern ability
+        if (Input.GetKey(KeyCode.LeftControl) && canFire)
         {
             Instantiate(fireball, transform.position, Quaternion.identity);
             canFire = false;

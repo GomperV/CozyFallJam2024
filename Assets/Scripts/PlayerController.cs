@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using TriInspector;
+
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -25,6 +27,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Upgrades")]
     public List<string> upgradesOwned;
+
+    [Header("Attacks")]
+    public GameObject flamethrowerHitbox;
+    [InfoBox("Multiplier to player speed while they are using the flamethrower")]
+    public float flamethrowerMovementMultiplier = 0.9f;
 
     private float _lastBoost = -999f;
     private float _lastHit = -999f;
@@ -94,6 +101,16 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
         float speed = GetMoveSpeed();
+
+        if(Input.GetMouseButton(1))
+        {
+            flamethrowerHitbox.SetActive(true);
+            speed *= flamethrowerMovementMultiplier;
+        }
+        else
+        {
+            flamethrowerHitbox.SetActive(false);
+        }
 
         // Only move and rotate the character when its far enough away to prevent jitter
         if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > 0.2f)
