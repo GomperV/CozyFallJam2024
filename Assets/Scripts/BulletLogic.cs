@@ -16,6 +16,17 @@ public class BulletLogic : MonoBehaviour
         Vector3 direction = mousePos - transform.position;
         Vector3 rotation = transform.position - mousePos;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+
+        Vector3 scale = transform.localScale;
+        float angle = Vector2.SignedAngle(Vector2.right, rotation);
+        if(angle > 90f || angle < -90f)
+        {
+            scale.x = -scale.x;
+            angle += 180f;
+        }
+
+        transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+        transform.localScale = scale;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
