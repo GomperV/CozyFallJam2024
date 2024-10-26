@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject fireball;
     public float force = 10;
-
     public float damage = 20f;
 
-    void Start()
+    private Rigidbody2D _rb;
+
+    void Awake()
     {
-        Camera mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
-        Vector3 rotation = transform.position - mousePos;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void AimTowards(GameObject target)
+    {
+        Vector3 targetPos = target.transform.position;
+        Vector3 direction = targetPos - transform.position;
+        Vector3 rotation = transform.position - targetPos;
+        _rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
         Vector3 scale = transform.localScale;
         float angle = Vector2.SignedAngle(Vector2.right, rotation);

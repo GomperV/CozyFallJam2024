@@ -19,8 +19,8 @@ TagManager:
   - Hitbox
   - Hurtbox
   - Terrain
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

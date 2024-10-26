@@ -1,38 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Pumpkin attack. Automatically fires every few seconds towards the closest visible enemy
+/// </summary>
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject fireball;
-    private bool canFire = true;
-    private float timer, health;
-    private float timeBetweenFiring = 0.5f;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private BulletLogic fireball;
+    [SerializeField] private float timeBetweenFiring = 0.5f;
+    public float maxDistance = 20f;
+
+    private PlayerController player;
+    private float _lastFired = -999f;
+    private float _maxDistanceSqr;
+
+    private void Awake()
     {
-        health = 100;
+        _maxDistanceSqr = maxDistance*maxDistance;
+        player = GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!canFire)
+        if(Time.time > _lastFired + timeBetweenFiring)
         {
-            timer += Time.deltaTime;
-            if (timer > timeBetweenFiring)
+            GameObject closest = GetClosestEnemy();
+            if(closest)
             {
-                canFire = true;
-                timer = 0;
+                var bullet = Instantiate(fireball, transform.position, Quaternion.identity);
+                bullet.AimTowards(closest);
+                _lastFired = Time.time;
+            }
+        }
+    }
+
+    private GameObject GetClosestEnemy()
+    {
+        EnemyCombat[] enemies = FindObjectsOfType<EnemyCombat>();
+        GameObject closest = null;
+        float closestSqDist = float.MaxValue;
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            float sqDist = Vector2.SqrMagnitude(transform.position - enemies[i].transform.position);
+            if(sqDist < closestSqDist && sqDist < _maxDistanceSqr)
+            {
+                var hit = Physics2D.Raycast(transform.position, enemies[i].transform.position - transform.position, 999f, LayerMask.GetMask("Terrain", "Enemy"));
+                if(hit.rigidbody.CompareTag("Enemy"))
+                {
+                    closestSqDist = sqDist;
+                    closest = hit.rigidbody.gameObject;
+                }
             }
         }
 
-        // TODO: automatically fire at the nearest enemy when you have the pumpkin lantern ability
-        if (Input.GetKey(KeyCode.LeftControl) && canFire)
-        {
-            Instantiate(fireball, transform.position, Quaternion.identity);
-            canFire = false;
-        }
+        return closest;
     }
 }

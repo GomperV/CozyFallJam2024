@@ -256,6 +256,7 @@ MonoBehaviour:
   brokenSegmentSprite: {fileID: 21300000, guid: 4d1d1eeb3fcf524419eef712c7a0d3bb, type: 3}
   invulnerabilityDuration: 1
   startingHealth: 3
+  desiredDistanceToMouse: 1
   boostDuration: 0.5
   boostAmount: 5
   boostCooldown: 3
@@ -270,12 +271,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3952169407067227777}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d03ea29292eddee41a4f0e166e920e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 9021249802739040190, guid: a9b22189ba5a95e47b3e24259d9af543, type: 3}
+  fireball: {fileID: 4286990764400784007, guid: a9b22189ba5a95e47b3e24259d9af543, type: 3}
+  timeBetweenFiring: 2.5
+  maxDistance: 15
 --- !u!50 &4143042493681958474
 Rigidbody2D:
   serializedVersion: 4

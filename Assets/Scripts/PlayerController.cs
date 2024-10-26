@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Sprite brokenSegmentSprite;
     public float invulnerabilityDuration = 1f;
     public int startingHealth = 5;
+    public float desiredDistanceToMouse = 1f;
 
     [Header("Speed boost")]
     public float boostDuration = 1f;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [InfoBox("Multiplier to player speed while they are using the flamethrower")]
     public float flamethrowerMovementMultiplier = 0.9f;
 
+    private bool _boostUnlocked;
     private float _lastBoost = -999f;
     private float _lastHit = -999f;
     private List<SpriteRenderer> _segmentSprites;
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Only move and rotate the character when its far enough away to prevent jitter
-        if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > 0.2f)
+        if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > desiredDistanceToMouse)
         {
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
             _rb.velocity = (mousePos - head.transform.position).normalized*speed;
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateSpeedBoost()
     {
-        if(Time.time > _lastBoost + boostCooldown)
+        if(_boostUnlocked && Time.time > _lastBoost + boostCooldown)
         {
             _lastBoost = Time.time;
         }
@@ -180,6 +182,16 @@ public class PlayerController : MonoBehaviour
         {
             AddSegment();
             AddSegment();
+        }
+
+        if(data.id == "fireball")
+        {
+            GetComponent<PlayerCombat>().enabled = true;
+        }
+
+        if(data.id == "speedboost")
+        {
+            _boostUnlocked = true;
         }
 
         upgradesOwned.Add(data.id);
