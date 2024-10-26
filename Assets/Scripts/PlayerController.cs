@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         mousePos.z = 0f;
         float speed = GetMoveSpeed();
 
-        if(Input.GetMouseButton(1))
+        if(Input.GetButton("Fire2"))
         {
             //use flamethrower without moving  - bad version for now
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Only move and rotate the character when its far enough away to prevent jitter
-        if(Input.GetMouseButton(0) && Vector3.Distance(mousePos, head.transform.position) > desiredDistanceToMouse)
+        if(Input.GetButton("Fire1") && Vector3.Distance(mousePos, head.transform.position) > desiredDistanceToMouse)
         {
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
             _rb.velocity = (mousePos - head.transform.position).normalized*speed;
