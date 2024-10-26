@@ -16,8 +16,8 @@ public class Hitbox : MonoBehaviour
     {
         if(string.IsNullOrEmpty(_targetTag) || other.CompareTag(_targetTag))
         {
-            hit.Invoke(other.gameObject);
-            other.GetComponent<Hurtbox>().hit.Invoke(gameObject);
+            hit?.Invoke(other.gameObject);
+            other.GetComponent<Hurtbox>().hit?.Invoke(gameObject);
         }
     }
 
@@ -26,8 +26,8 @@ public class Hitbox : MonoBehaviour
     {
         if(string.IsNullOrEmpty(_targetTag) || collision.gameObject.CompareTag(_targetTag))
         {
-            hit.Invoke(collision.gameObject);
-            collision.gameObject.GetComponent<Hurtbox>().hit.Invoke(gameObject);
+            hit?.Invoke(collision.gameObject);
+            collision.gameObject.GetComponent<Hurtbox>().hit?.Invoke(gameObject);
         }
     }
 }

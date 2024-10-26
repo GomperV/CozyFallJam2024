@@ -27,7 +27,6 @@ public class EnemySpawner : MonoBehaviour
         print("Started spawning");
         while(isSpawning)
         {
-            yield return new WaitForSeconds(timeBetweenSpawns);
             if (!isSpawning) break;
             Instantiate(enemyBeetle, transform.position, Quaternion.identity);
             if(!spawnedDefender)
@@ -39,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
                 newDefender.GetComponent<EnemyDefenderMovement>().PunktB = patrolPointB;
                 spawnedDefender = true;
             }
-
+            yield return new WaitForSeconds(timeBetweenSpawns);
         }
         
     }
