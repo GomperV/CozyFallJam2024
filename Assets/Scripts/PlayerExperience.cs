@@ -14,7 +14,7 @@ public class PlayerExperience : MonoBehaviour
     {
         experience += exp;
         int steps = isWaveBonus ? 40 : 20;
-        string label = isWaveBonus ? "EXP" : "WAVE BONUS";
+        string label = isWaveBonus ? "WAVE BONUS" : "EXP";
         StartCoroutine(ExpGained(exp, steps, label));
     }
 
