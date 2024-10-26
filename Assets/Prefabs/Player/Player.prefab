@@ -146,18 +146,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 3952169407067227777}
   segments: []
-  moveSpeed: 5
+  moveSpeed: 6
   segmentDistance: 0.8
   segmentPrefab: {fileID: 2242172010375170207, guid: e050b3e969ae3804f9cb385fdcca24ef, type: 3}
   playerRoot: {fileID: 6976624486131800759}
   normalSegmentSprite: {fileID: 21300000, guid: a218b7f344564174c8a85d7dfd4f92a6, type: 3}
   brokenSegmentSprite: {fileID: 21300000, guid: 4d1d1eeb3fcf524419eef712c7a0d3bb, type: 3}
   invulnerabilityDuration: 1
-  startingHealth: 5
+  startingHealth: 3
   boostDuration: 0.5
   boostAmount: 5
   boostCooldown: 3
   ui: {fileID: 0}
+  upgradesOwned: []
 --- !u!114 &3254974162192623666
 MonoBehaviour:
   m_ObjectHideFlags: 0

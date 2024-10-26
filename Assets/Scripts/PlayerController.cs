@@ -152,6 +152,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if(data.id == "health")
+        {
+            AddSegment();
+            AddSegment();
+        }
+
         upgradesOwned.Add(data.id);
     }
 }
