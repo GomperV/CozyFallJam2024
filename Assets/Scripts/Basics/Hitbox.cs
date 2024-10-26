@@ -10,6 +10,7 @@ public class Hitbox : MonoBehaviour
 {
     [TagSelector, SerializeField]
     private string _targetTag;
+    public bool canHitTerrain;
     public UnityEvent<GameObject> hit;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,8 +20,13 @@ public class Hitbox : MonoBehaviour
             hit?.Invoke(other.gameObject);
             other.GetComponent<Hurtbox>().hit?.Invoke(gameObject);
         }
-    }
 
+        if(canHitTerrain && other.CompareTag("Terrain"))
+        {
+            hit?.Invoke(other.gameObject);
+        }
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,6 +34,11 @@ public class Hitbox : MonoBehaviour
         {
             hit?.Invoke(collision.gameObject);
             collision.gameObject.GetComponent<Hurtbox>().hit?.Invoke(gameObject);
+        }
+
+        if(canHitTerrain && collision.gameObject.CompareTag("Terrain"))
+        {
+            hit?.Invoke(collision.gameObject);
         }
     }
 }

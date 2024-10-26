@@ -145,6 +145,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  canHitTerrain: 1
 --- !u!58 &7809985704261209404
 CircleCollider2D:
   m_ObjectHideFlags: 0
