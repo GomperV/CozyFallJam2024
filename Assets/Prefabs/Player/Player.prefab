@@ -286,7 +286,7 @@ MonoBehaviour:
   startingHealth: 3
   desiredDistanceToMouse: 0.1
   boostDuration: 0.5
-  boostAmount: 5
+  boostAmount: 6
   boostCooldown: 3
   ui: {fileID: 0}
   upgradesOwned: []

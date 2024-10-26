@@ -29,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!isSpawning) break;
             randomChance = Random.Range(1, 5);
-            print(randomChance);
             //spawn enemy guardian with attacker sometimes
             if(randomChance == 3)
             {

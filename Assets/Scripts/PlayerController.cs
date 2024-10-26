@@ -124,11 +124,9 @@ public class PlayerController : MonoBehaviour
         { // mouse is on right side of player
             head.GetComponentInChildren<SpriteRenderer>().flipY = false;
             facingRight = true;
-            print("right side");
         }
         if (difference.x < 0 && facingRight && (Input.GetButton("Fire1") || Input.GetButton("Fire2")))
         { // mouse is on left side
-            print("left side");
             head.GetComponentInChildren<SpriteRenderer>().flipY = true;
             facingRight = false;
         }

@@ -17,11 +17,14 @@ public class UIManager : MonoBehaviour
     public UpgradeDisplay upgradeDisplay;
 
     private PlayerController player;
+    private PlayerExperience exp;
+    private float requiredExperience;
 
     void Start()
     {
         Time.timeScale = 1f;
         player = FindObjectOfType<PlayerController>();
+        exp = FindObjectOfType<PlayerExperience>();
     }
 
     public void Restart()
@@ -37,8 +40,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void ActivateUpgradeMenu(UpgradeData[] upgrades)
+    public void ActivateUpgradeMenu(UpgradeData[] upgrades, float requiredExperience)
     {
+        this.requiredExperience = requiredExperience;
         Time.timeScale = 0;
         upgradeMenu.SetActive(true);
 
@@ -57,15 +61,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void CloseUpgradeMenu()
+    {
+        upgradeMenu.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
     private UnityAction OnClickedUpgrade(UpgradeData data)
     {
         return () =>
         {
-            Debug.Log("Clicked upgrade ID " + data.id);
-            upgradeMenu.SetActive(false);
-            Time.timeScale = 1;
+            CloseUpgradeMenu();
             upgradeDisplay.AddUpgrade(data);
             player.ApplyUpgrade(data);
+            exp.SpendExperience(requiredExperience);
         };
     }
 

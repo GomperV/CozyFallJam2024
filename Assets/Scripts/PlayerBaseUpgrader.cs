@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerBaseUpgrader : MonoBehaviour
@@ -22,8 +22,7 @@ public class PlayerBaseUpgrader : MonoBehaviour
     {
         if(collision.CompareTag("Player") && exp.GetExperience() >= requiredExperience)
         {
-            ui.ActivateUpgradeMenu(GetRandomUpgrades());
-            exp.SpendExperience(requiredExperience);
+            ui.ActivateUpgradeMenu(GetRandomUpgrades(), requiredExperience);
         }
     }
 
@@ -40,7 +39,7 @@ public class PlayerBaseUpgrader : MonoBehaviour
             }
         }
 
-        UpgradeData[] result = new UpgradeData[Mathf.Min(bucket.Count, 3)];
+        UpgradeData[] result = new UpgradeData[Mathf.Min(bucket.Count, 5)];
 
         for(int i = 0; i < result.Length; i++)
         {
