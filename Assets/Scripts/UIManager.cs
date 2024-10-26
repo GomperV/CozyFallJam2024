@@ -36,10 +36,11 @@ public class UIManager : MonoBehaviour
     public void ActivateUpgradeMenu(UpgradeData[] upgrades)
     {
         Time.timeScale = 0;
+        upgradeMenu.SetActive(true);
 
         foreach(Transform t in upgradeContainer)
         {
-            Destroy(transform.gameObject);
+            Destroy(t.gameObject);
         }
 
         for(int i = 0; i < upgrades.Length; i++)

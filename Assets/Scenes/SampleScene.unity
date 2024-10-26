@@ -3800,6 +3800,7 @@ GameObject:
   - component: {fileID: 1604759825}
   - component: {fileID: 1604759824}
   - component: {fileID: 1604759827}
+  - component: {fileID: 1604759828}
   m_Layer: 0
   m_Name: PlayerBase
   m_TagString: PlayerBase
@@ -3925,6 +3926,20 @@ MonoBehaviour:
   baseHealth: 0
   baseHealthText: {fileID: 755244067}
   ui: {fileID: 1538671382}
+--- !u!114 &1604759828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604759823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e004455fbbe26a94bb1552a873be54fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades: {fileID: 11400000, guid: bc6333fc25d39964c91a4c97b2a3778a, type: 2}
+  requiredExperience: 10
 --- !u!224 &1605596529 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1818031287874959686, guid: cb3ff7c8666f0d54582a29d4ec5c58a6, type: 3}
