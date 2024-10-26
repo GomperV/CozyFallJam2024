@@ -9,6 +9,16 @@ public class ContinuousHitBox : MonoBehaviour
     private string _targetTag;
     public UnityEvent<GameObject> continuousHit;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        if(gameObject.layer != LayerMask.NameToLayer("Hitbox"))
+        {
+            Debug.LogError("ContinuousHitbox is not in the correct layer", this);
+        }
+    }
+#endif
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if(string.IsNullOrEmpty(_targetTag) || other.CompareTag(_targetTag))

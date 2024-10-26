@@ -13,6 +13,16 @@ public class Hitbox : MonoBehaviour
     public bool canHitTerrain;
     public UnityEvent<GameObject> hit;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        if(gameObject.layer != LayerMask.NameToLayer("Hitbox"))
+        {
+            Debug.LogError("Hitbox is not in the correct layer", this);
+        }
+    }
+#endif
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(string.IsNullOrEmpty(_targetTag) || other.CompareTag(_targetTag))
