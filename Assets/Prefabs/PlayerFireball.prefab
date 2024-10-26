@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 894388251372084582}
   - component: {fileID: 5495630218177318889}
   - component: {fileID: 4286990764400784007}
+  - component: {fileID: 6561960124408548855}
+  - component: {fileID: 2865947035348964791}
   - component: {fileID: 7809985704261209404}
   - component: {fileID: 4320022279006202284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +104,47 @@ MonoBehaviour:
   fireball: {fileID: 0}
   force: 10
   damage: 20
+--- !u!114 &6561960124408548855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021249802739040190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac114f583678c74b950c1f80286ec82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
+--- !u!114 &2865947035348964791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021249802739040190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3268b626d5373c14481196a02b3b3da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTag: Enemy
+  hit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4286990764400784007}
+        m_TargetAssemblyTypeName: BulletLogic, Assembly-CSharp
+        m_MethodName: DestroyBullet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &7809985704261209404
 CircleCollider2D:
   m_ObjectHideFlags: 0

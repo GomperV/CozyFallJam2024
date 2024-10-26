@@ -7,9 +7,9 @@ public class BulletLogic : MonoBehaviour
     [SerializeField]
     private GameObject fireball;
     public float force = 10;
-    private float timer;
+
     public float damage = 20f;
-    // Start is called before the first frame update
+
     void Start()
     {
         Camera mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -20,41 +20,24 @@ public class BulletLogic : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        timer += Time.deltaTime;
-        if (timer > 2)
+        if(collision.CompareTag("Terrain"))
         {
-            Destroy(gameObject);
+            DestroyBullet();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Terrain"))
         {
-            EnemyCombat enemyHealth = collision.GetComponent<EnemyCombat>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.TakeDamage(damage);
-            }
-
-            Destroy(gameObject);
-        } else if (collision.CompareTag("EnemyNest"))
-        {
-            EnemyNestHealth enemyHealth = collision.GetComponent<EnemyNestHealth>();
-            if (enemyHealth != null)
-            {
-                Debug.Log($"{collision.name} deals damage to nest");
-                enemyHealth.TakeDamage(damage);
-            }
-
-            Destroy(gameObject);
-        } else if(collision.CompareTag("Terrain"))
-        {
-            Destroy(gameObject);
+            DestroyBullet();
         }
+    }
+
+    public void DestroyBullet()
+    {
+        Destroy(gameObject);
     }
 }
