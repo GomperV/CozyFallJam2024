@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
+
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 public class UIManager : MonoBehaviour
 {
-    private bool changePauseMode = true;
     [SerializeField] private GameObject gameInfoPanel;
     [SerializeField] private TMP_Text infoText;
     [SerializeField] private GameObject upgradeMenu;
@@ -19,6 +18,7 @@ public class UIManager : MonoBehaviour
     private PlayerController player;
     private PlayerExperience exp;
     private float requiredExperience;
+    private bool gameOver;
 
     void Start()
     {
@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
 
     public void GameLost()
     {
+        gameOver = true;
         gameInfoPanel.SetActive(true);
         infoText.text = "YOU'VE LOST!";
         Time.timeScale = 0f;
@@ -63,6 +64,8 @@ public class UIManager : MonoBehaviour
 
     public void CloseUpgradeMenu()
     {
+        if(!upgradeMenu.activeSelf) return;
+
         upgradeMenu.SetActive(false);
         Time.timeScale = 1f;
     }
@@ -78,29 +81,30 @@ public class UIManager : MonoBehaviour
         };
     }
 
-    public void activate_pausemenu(bool isPaused)
+    public void activate_pausemenu()
     {
-        if (isPaused)
-        {
-            infoText.text = "GAME PAUSED";
-            gameInfoPanel.SetActive(true);
-            Time.timeScale = 0;
-        }
-        else
+        if(upgradeMenu.activeSelf || gameOver) return;
+
+        if (gameInfoPanel.activeSelf)
         {
             infoText.text = "";
             gameInfoPanel.SetActive(false);
             Time.timeScale = 1;
+        }
+        else
+        {
+            infoText.text = "GAME PAUSED";
+            gameInfoPanel.SetActive(true);
+            Time.timeScale = 0;
         }
 
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
-            activate_pausemenu(changePauseMode);
-            changePauseMode = !changePauseMode;
+            activate_pausemenu();
         }
     }
 }
