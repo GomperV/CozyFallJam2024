@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private int _health;
     private Rigidbody2D _rb;
 
+
+    private bool facingRight = true;
     private void Awake()
     {
         upgradesOwned = new();
@@ -116,9 +118,22 @@ public class PlayerController : MonoBehaviour
         {
             flamethrowerHitbox.SetActive(false);
         }
-
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        difference.Normalize();
+        if (difference.x >= 0 && !facingRight && (Input.GetButton("Fire1") || Input.GetButton("Fire2")))
+        { // mouse is on right side of player
+            head.GetComponentInChildren<SpriteRenderer>().flipY = false;
+            facingRight = true;
+            print("right side");
+        }
+        if (difference.x < 0 && facingRight && (Input.GetButton("Fire1") || Input.GetButton("Fire2")))
+        { // mouse is on left side
+            print("left side");
+            head.GetComponentInChildren<SpriteRenderer>().flipY = true;
+            facingRight = false;
+        }
         // Only move and rotate the character when its far enough away to prevent jitter
-        if(Input.GetButton("Fire1") && Vector3.Distance(mousePos, head.transform.position) > desiredDistanceToMouse)
+        if (Input.GetButton("Fire1") && Vector3.Distance(mousePos, head.transform.position) > desiredDistanceToMouse)
         {
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
             _rb.velocity = (mousePos - head.transform.position).normalized*speed;
