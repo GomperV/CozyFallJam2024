@@ -4713,6 +4713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrades: {fileID: 11400000, guid: bc6333fc25d39964c91a4c97b2a3778a, type: 2}
   requiredExperience: 10
+  menuOpenDelay: 3
 --- !u!224 &1605596529 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1818031287874959686, guid: cb3ff7c8666f0d54582a29d4ec5c58a6, type: 3}
