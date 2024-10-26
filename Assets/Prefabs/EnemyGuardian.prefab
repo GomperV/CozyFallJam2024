@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1785124277524288699}
   - component: {fileID: 4935177747206724350}
   - component: {fileID: 5011733155228758982}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Hitbox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 9170542963229764720}
   - component: {fileID: 8557590090230824457}
   - component: {fileID: 577605577535818602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyGuardian
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.35, y: 4.79}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &9170542963229764720
 MonoBehaviour:
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 7852361200970094002}
   - component: {fileID: 6515737899252918333}
   - component: {fileID: 6007301031384529897}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Hurtbox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 80352412209665966}
   - component: {fileID: 7873180673725291252}
   - component: {fileID: 4029275363099400940}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bug 03 _ Flight v2 _ Spritesheet_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
