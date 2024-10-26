@@ -9,8 +9,8 @@ public class EnemySpawner : MonoBehaviour
     private int spawnedEnemies = 0;
     private bool spawnedDefender = false;
     [SerializeField]
-    private GameObject enemyBeetle, enemyDefender, enemy3, patrolPointA, patrolPointB;
-
+    private GameObject enemyBeetle, enemyDefender, enemyGuardian, patrolPointA, patrolPointB;
+    private int randomChance = 0;
     public void SpawnEnemies(float spawnRate)
     {
         //nest will spawn a new defender after each wave
@@ -28,7 +28,21 @@ public class EnemySpawner : MonoBehaviour
         while(isSpawning)
         {
             if (!isSpawning) break;
-            Instantiate(enemyBeetle, transform.position, Quaternion.identity);
+            randomChance = Random.Range(1, 5);
+            print(randomChance);
+            //spawn enemy guardian with attacker sometimes
+            if(randomChance == 3)
+            {
+                print("spawning GUARDIAN");
+                GameObject attacker = Instantiate(enemyBeetle, transform.position, Quaternion.identity);
+                GameObject guardian = Instantiate(enemyGuardian, transform.position, Quaternion.identity);
+                guardian.GetComponent<EnemyGuardianMovement>().PunktA = attacker.GetComponent<EnemyMovement>().patrolPointA;
+                guardian.GetComponent<EnemyGuardianMovement>().PunktB = attacker.GetComponent<EnemyMovement>().patrolPointB;
+            } else //spawn only attacker
+            {
+                Instantiate(enemyBeetle, transform.position, Quaternion.identity);
+            }
+            
             if(!spawnedDefender)
             {
                 yield return new WaitForSeconds(timeBetweenSpawns/2);

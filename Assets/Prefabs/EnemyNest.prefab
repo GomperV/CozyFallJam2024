@@ -83,7 +83,7 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   enemyBeetle: {fileID: 6532262074295378825, guid: 0d76637a52cd12a40984776ec3b96e18, type: 3}
   enemyDefender: {fileID: 1443747829335091863, guid: ed75ac36d2679be41b6c81906db29fc0, type: 3}
-  enemy3: {fileID: 0}
+  enemyGuardian: {fileID: 7721591400262782101, guid: 866993253ba9fc243b9c437d4c869541, type: 3}
   patrolPointA: {fileID: 1330170716960060908}
   patrolPointB: {fileID: 6123389211074583433}
 --- !u!114 &3789503161982251476

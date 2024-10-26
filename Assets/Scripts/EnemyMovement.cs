@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public float baseDamage;
     private bool reachedTarget = false;
     private bool isSlowedDown = false;
+    public GameObject patrolPointA, patrolPointB;
 
     // Start is called before the first frame update
     void Start()
