@@ -51,6 +51,9 @@ public class BulletLogic : MonoBehaviour
             }
 
             Destroy(gameObject);
+        } else if(collision.CompareTag("Terrain"))
+        {
+            Destroy(gameObject);
         }
     }
 }
