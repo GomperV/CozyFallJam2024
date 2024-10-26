@@ -10,16 +10,12 @@ public class EnemySpawner : MonoBehaviour
     private bool spawnedDefender = false;
     [SerializeField]
     private GameObject enemyBeetle, enemyDefender, enemy3, patrolPointA, patrolPointB;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
     public void SpawnEnemies(float spawnRate)
     {
         //nest will spawn a new defender after each wave
         spawnedDefender = false;
-        GetComponent<EnemyNestHealth>().health = 100;
+        GetComponent<EnemyNestHealth>().health = 100f;
         GetComponent<EnemyNestHealth>().nestDestroyed = false;
         isSpawning = true;
         timeBetweenSpawns = spawnRate;
@@ -45,12 +41,6 @@ public class EnemySpawner : MonoBehaviour
             }
 
         }
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }

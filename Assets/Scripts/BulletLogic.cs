@@ -47,6 +47,7 @@ public class BulletLogic : MonoBehaviour
             EnemyNestHealth enemyHealth = collision.GetComponent<EnemyNestHealth>();
             if (enemyHealth != null)
             {
+                Debug.Log($"{collision.name} deals damage to nest");
                 enemyHealth.TakeDamage(damage);
             }
 

@@ -11,14 +11,19 @@ public class EnemyNestHealth : MonoBehaviour
     private WavesManager wavesManager;
     public bool nestDestroyed = false;
     public SpriteRenderer nestSprite;
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        health = 0f;
+        nestDestroyed = true;
+    }
+
     void Start()
     {
-        nestDestroyed = true;
         wavesManager = GameObject.Find("WavesManager").GetComponent<WavesManager>();
         UI = GameObject.Find("UI");
-        health = 0f;
     }
+
     public void TakeDamage(float dmg)
     {
         if (nestDestroyed) return;
@@ -29,6 +34,7 @@ public class EnemyNestHealth : MonoBehaviour
             wavesManager.SpawnerDestroyed();
         }
     }
+
     // Update is called once per frame
     void Update()
     {
