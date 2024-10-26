@@ -11,13 +11,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text infoText;
     [SerializeField] private GameObject upgradeMenu;
 
-    [Header("Upgrade screen")]
+    [Header("Upgrades")]
     public UpgradeItemUI upgradeItemPrefab;
     public Transform upgradeContainer;
+    public UpgradeDisplay upgradeDisplay;
+
+    private PlayerController player;
 
     void Start()
     {
         Time.timeScale = 1f;
+        player = FindObjectOfType<PlayerController>();
     }
 
     public void Restart()
@@ -49,17 +53,19 @@ public class UIManager : MonoBehaviour
             ui.image.sprite = upgrades[i].sprite;
             ui.title.text = upgrades[i].title;
             ui.description.text = upgrades[i].description;
-            ui.selectionButton.onClick.AddListener(OnClickedUpgrade(upgrades[i].id));
+            ui.selectionButton.onClick.AddListener(OnClickedUpgrade(upgrades[i]));
         }
     }
 
-    private UnityAction OnClickedUpgrade(string upgradeID)
+    private UnityAction OnClickedUpgrade(UpgradeData data)
     {
         return () =>
         {
-            Debug.Log("Clicked upgrade ID " + upgradeID);
+            Debug.Log("Clicked upgrade ID " + data.id);
             upgradeMenu.SetActive(false);
             Time.timeScale = 1;
+            upgradeDisplay.AddUpgrade(data);
+            player.ApplyUpgrade(data);
         };
     }
 

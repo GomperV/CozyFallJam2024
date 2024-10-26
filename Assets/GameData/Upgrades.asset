@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrades:
   - repeatable: 0
-    sprite: {fileID: 21300000, guid: 66a4b678ae7187440a256175eefa1623, type: 3}
+    sprite: {fileID: 21300000, guid: f67e5179b0741104fb584ae20cd86ad4, type: 3}
     id: fireball
     title: Inferno Gourd
     description: Every [time] shoot out a jack-o-lantern that splits into smaller

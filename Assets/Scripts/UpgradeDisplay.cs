@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 /// <summary>
@@ -8,22 +9,11 @@ using UnityEngine;
 public class UpgradeDisplay : MonoBehaviour
 {
     public Transform uiRoot;
-    public GameObject speedPrefab;
-    public GameObject healthPrefab;
+    public UpgradeDisplayItem upgradeItemPrefab;
 
-    void Start()
+    public void AddUpgrade(UpgradeData data)
     {
-        AddSpeedUpgrade();
-        AddHealthUpgrade();
-    }
-
-    void AddSpeedUpgrade()
-    {
-        Instantiate(speedPrefab, uiRoot);
-    }
-
-    void AddHealthUpgrade()
-    {
-        Instantiate(healthPrefab, uiRoot);
+        var ui = Instantiate(upgradeItemPrefab, uiRoot);
+        ui.image.sprite = data.sprite;
     }
 }
