@@ -106,6 +106,9 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButton(1))
         {
+            //use flamethrower without moving  - bad version for now
+            float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
+            head.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             flamethrowerHitbox.SetActive(true);
             speed *= flamethrowerMovementMultiplier;
         }
