@@ -7,6 +7,7 @@ public class PlayerBaseUpgrader : MonoBehaviour
     public UpgradesObject upgrades;
     public float requiredExperience = 100f;
     public float menuOpenDelay = 5f;
+    public GameObject upgradeParticle;
 
     private PlayerExperience exp;
     private UIManager ui;
@@ -21,13 +22,17 @@ public class PlayerBaseUpgrader : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
     }
 
+    private void Update()
+    {
+        upgradeParticle.SetActive(exp.experience > requiredExperience);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player") && exp.GetExperience() >= requiredExperience && Time.time > _lastOpenedMenu + menuOpenDelay)
         {
             _lastOpenedMenu = Time.time;
-            ui.ActivateUpgradeMenu(GetRandomUpgrades(), requiredExperience);
-
+            ui.ActivateUpgradeMenu(GetRandomUpgrades());
         }
     }
 

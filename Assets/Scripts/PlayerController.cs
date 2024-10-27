@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
     {
         if(data.id == "healing")
         {
-            _health = Mathf.Min(segments.Count, _health + 2);
+            _health = segments.Count;
             SetHealthDisplay();
             // healing is a repeating upgrade, don't add it to the list
             return;

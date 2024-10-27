@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameInfoPanel, losePanel, winPanel;
     [SerializeField] private TMP_Text infoText;
+    [SerializeField] private TMP_Text xpCostText;
     [SerializeField] private GameObject upgradeMenu;
 
     [Header("Upgrades")]
@@ -15,16 +16,24 @@ public class UIManager : MonoBehaviour
     public Transform upgradeContainer;
     public UpgradeDisplay upgradeDisplay;
 
+    private PlayerBaseUpgrader playerBase;
     private PlayerController player;
     private PlayerExperience exp;
-    private float requiredExperience;
     private bool gameOver;
 
     void Start()
     {
         Time.timeScale = 1f;
+
         player = FindObjectOfType<PlayerController>();
         exp = FindObjectOfType<PlayerExperience>();
+        playerBase = FindObjectOfType<PlayerBaseUpgrader>();
+    }
+
+    private void UpdateXPCostDisplay()
+    {
+        string color = playerBase.requiredExperience > exp.experience ? "red" : "white";
+        xpCostText.text = $"Cost: {playerBase.requiredExperience}/<color={color}>{exp.experience}</color> EXP";
     }
 
     public void Restart()
@@ -47,11 +56,11 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void ActivateUpgradeMenu(UpgradeData[] upgrades, float requiredExperience)
+    public void ActivateUpgradeMenu(UpgradeData[] upgrades)
     {
-        this.requiredExperience = requiredExperience;
         Time.timeScale = 0;
         upgradeMenu.SetActive(true);
+        UpdateXPCostDisplay();
 
         foreach(Transform t in upgradeContainer)
         {
@@ -64,7 +73,7 @@ public class UIManager : MonoBehaviour
             ui.image.sprite = upgrades[i].sprite;
             ui.title.text = upgrades[i].title;
             ui.description.text = upgrades[i].description;
-            ui.selectionButton.onClick.AddListener(OnClickedUpgrade(upgrades[i]));
+            ui.selectionButton.onClick.AddListener(OnClickedUpgrade(upgrades[i], ui));
         }
     }
 
@@ -76,14 +85,23 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private UnityAction OnClickedUpgrade(UpgradeData data)
+    private UnityAction OnClickedUpgrade(UpgradeData data, UpgradeItemUI ui)
     {
         return () =>
         {
-            CloseUpgradeMenu();
-            upgradeDisplay.AddUpgrade(data);
-            player.ApplyUpgrade(data);
-            exp.SpendExperience(requiredExperience);
+            if(exp.experience > playerBase.requiredExperience)
+            {
+                exp.SpendExperience(playerBase.requiredExperience);
+                upgradeDisplay.AddUpgrade(data);
+                player.ApplyUpgrade(data);
+                playerBase.requiredExperience += 100f;
+                UpdateXPCostDisplay();
+
+                if(data.id != "healing")
+                {
+                    Destroy(ui.gameObject);
+                }
+            }
         };
     }
 

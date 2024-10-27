@@ -40,5 +40,5 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 82ad4649387e15f42b9a3a794c7e2eec, type: 3}
     id: healing
     title: Witches Brew
-    description: Heal two segments of your body as you drink a potion brewed from
+    description: Heal all segments of your body as you drink a potion brewed from
       enchanted fall herbs
