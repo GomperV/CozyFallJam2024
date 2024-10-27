@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   deathParticle: {fileID: 7389359244948663602, guid: 7389e30111fa4d3499348c0d25f7cc0f, type: 3}
+  damageTakenParticle: {fileID: 4706774380152521514, guid: 78c5fc5e98d17bb44bad06c3061b77f5, type: 3}
   sprite: {fileID: 4751155388637560267}
   baseHealthText: {fileID: 909647921871288437}
   nestDestroyed: 0
@@ -337,8 +338,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.50138927, w: 0.86522186}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6373098489242847077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60.184}
@@ -423,13 +424,13 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 3.245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.04}
     oldSize: {x: 5.18, y: 6.49}
     newSize: {x: 5.18, y: 6.49}
     adaptiveTilingThreshold: 0.5

@@ -5,6 +5,7 @@ public class EnemyNestHealth : MonoBehaviour
 {
     public float health;
     public GameObject deathParticle;
+    public GameObject damageTakenParticle;
     public SpriteRenderer sprite;
     [SerializeField]
     private TMP_Text baseHealthText;
@@ -34,6 +35,7 @@ public class EnemyNestHealth : MonoBehaviour
     {
         if (nestDestroyed) return;
         health -= dmg;
+        Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         if (health < 1f)
         {
             DestroyNest();
@@ -47,7 +49,7 @@ public class EnemyNestHealth : MonoBehaviour
         wavesManager.SpawnerDestroyed();
         var particle = Instantiate(deathParticle);
         particle.transform.rotation = sprite.transform.rotation;
-        particle.transform.position = sprite.transform.position + particle.transform.up*-0.5f;
+        particle.transform.position = sprite.transform.position /*+ particle.transform.up*-0.5f*/;
     }
 
     public void TakeFlamethrowerDamage()
@@ -57,6 +59,7 @@ public class EnemyNestHealth : MonoBehaviour
             return;
         }
 
+        Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         health -= 10f;
         _lastFlameHit = Time.time;
 
@@ -71,11 +74,10 @@ public class EnemyNestHealth : MonoBehaviour
 
         if (wavesManager.buffEnemies)
         {
-            transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-            
+            sprite.transform.localScale = Vector3.one*2f;
         } else
         {
-            transform.localScale = originalScale;
+            sprite.transform.localScale = Vector3.one;
         }
         if(originalHealth == 0)
         {
