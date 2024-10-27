@@ -5,6 +5,7 @@ public class EnemyNestHealth : MonoBehaviour
 {
     public float health;
     public GameObject deathParticle;
+    public GameObject damageTakenParticle;
     public SpriteRenderer sprite;
     [SerializeField]
     private TMP_Text baseHealthText;
@@ -34,6 +35,7 @@ public class EnemyNestHealth : MonoBehaviour
     {
         if (nestDestroyed) return;
         health -= dmg;
+        Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         if (health < 1f)
         {
             DestroyNest();
@@ -57,6 +59,7 @@ public class EnemyNestHealth : MonoBehaviour
             return;
         }
 
+        Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         health -= 10f;
         _lastFlameHit = Time.time;
 

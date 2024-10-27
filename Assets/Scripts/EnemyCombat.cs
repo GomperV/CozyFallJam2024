@@ -6,6 +6,7 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField] public float damage = 25f;
     public SpriteRenderer sprite;
     public float flameDamageCooldown = 0.1f;
+    public GameObject damageTakenParticle;
 
     private bool damageDone = false;
     private GameObject player;
@@ -23,6 +24,7 @@ public class EnemyCombat : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health -= dmg;
+        Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         if(health < 1 )
         {
             OnDie();
@@ -35,6 +37,7 @@ public class EnemyCombat : MonoBehaviour
         {
             health -= 10f;
             _lastFlameHit = Time.time;
+            Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
 
             if(health < 1)
             {

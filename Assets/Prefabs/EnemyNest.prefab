@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   deathParticle: {fileID: 7389359244948663602, guid: 7389e30111fa4d3499348c0d25f7cc0f, type: 3}
+  damageTakenParticle: {fileID: 4706774380152521514, guid: 78c5fc5e98d17bb44bad06c3061b77f5, type: 3}
   sprite: {fileID: 4751155388637560267}
   baseHealthText: {fileID: 909647921871288437}
   nestDestroyed: 0
@@ -429,7 +430,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 3.245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.04}
     oldSize: {x: 5.18, y: 6.49}
     newSize: {x: 5.18, y: 6.49}
     adaptiveTilingThreshold: 0.5

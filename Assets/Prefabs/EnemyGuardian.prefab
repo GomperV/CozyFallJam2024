@@ -185,6 +185,7 @@ MonoBehaviour:
   damage: 25
   sprite: {fileID: 7873180673725291252}
   flameDamageCooldown: 0.1
+  damageTakenParticle: {fileID: 4706774380152521514, guid: 78c5fc5e98d17bb44bad06c3061b77f5, type: 3}
 --- !u!114 &6787965224281795369
 MonoBehaviour:
   m_ObjectHideFlags: 0
