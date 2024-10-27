@@ -34,13 +34,21 @@ public class MusicManager : MonoBehaviour
 
         if(gameOver)
         {
-            _gameOverPlayed = true;
-            loseInstance.start();
+            if(!_gameOverPlayed)
+            {
+                _gameOverPlayed = true;
+                loseInstance.start();
+                musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            }
         }
         else if (victory)
         {
-            _victoryPlayed = true;
-            winInstance.start();
+            if(!_victoryPlayed)
+            {
+                _victoryPlayed = true;
+                winInstance.start();
+                musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            }
         }
         else
         {
