@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +15,7 @@ public class MusicManager : MonoBehaviour
 
     private bool _gameOverPlayed;
     private bool _victoryPlayed;
+    private bool _banksLoaded;
 
     void Start()
     {
@@ -25,16 +28,28 @@ public class MusicManager : MonoBehaviour
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            musicInstance = FMODUnity.RuntimeManager.CreateInstance(musicEvent);
-            winInstance = FMODUnity.RuntimeManager.CreateInstance(winEvent);
-            loseInstance = FMODUnity.RuntimeManager.CreateInstance(loseEvent);
 
-            musicInstance.start();
+            StartCoroutine(LoadEventsRoutine());
         }
+    }
+
+    IEnumerator LoadEventsRoutine()
+    {
+        yield return new WaitUntil(() => FMODUnity.RuntimeManager.HasBankLoaded("Master"));
+
+        _banksLoaded = true;
+
+        musicInstance = FMODUnity.RuntimeManager.CreateInstance(musicEvent);
+        winInstance = FMODUnity.RuntimeManager.CreateInstance(winEvent);
+        loseInstance = FMODUnity.RuntimeManager.CreateInstance(loseEvent);
+
+        musicInstance.start();
     }
 
     void Update()
     {
+        if(!_banksLoaded) return;
+
         string scene = SceneManager.GetActiveScene().name;
 
         _gameOverPlayed = _gameOverPlayed && gameOver;
