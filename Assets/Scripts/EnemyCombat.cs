@@ -7,6 +7,7 @@ public class EnemyCombat : MonoBehaviour
     public SpriteRenderer sprite;
     public float flameDamageCooldown = 0.1f;
     public GameObject damageTakenParticle;
+    public FMODUnity.EventReference damageEvent;
 
     private bool damageDone = false;
     private GameObject player;
@@ -24,6 +25,7 @@ public class EnemyCombat : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health -= dmg;
+        FMODUnity.RuntimeManager.PlayOneShot(damageEvent, transform.position);
         Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         if(health < 1 )
         {
@@ -37,6 +39,7 @@ public class EnemyCombat : MonoBehaviour
         {
             health -= 10f;
             _lastFlameHit = Time.time;
+            FMODUnity.RuntimeManager.PlayOneShot(damageEvent, transform.position);
             var particle = Instantiate(damageTakenParticle, null);
             particle.transform.position = transform.position;
 
