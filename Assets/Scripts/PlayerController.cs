@@ -38,6 +38,13 @@ public class PlayerController : MonoBehaviour
     [InfoBox("Multiplier to player speed while they are using the flamethrower")]
     public float flamethrowerMovementMultiplier = 0.9f;
 
+    [Header("Audio")]
+    public FMODUnity.EventReference flameEvent;
+    private FMOD.Studio.EventInstance flameEventInstance;
+    private const string FIRE_THROW_STOPS = "fire_throw_stops";
+    private const string WHICH_FIRE_LOOPS = "which_fire_loops";
+    private const int NUM_FIRE_LOOPS_ONE_INDEXED = 3;
+
     private bool _boostUnlocked;
     private float _lastHit = -999f;
     private float _movementTimer = -999f;
@@ -51,6 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         upgradesOwned = new();
         _rb = GetComponent<Rigidbody2D>();
+        flameEventInstance = FMODUnity.RuntimeManager.CreateInstance(flameEvent);
     }
 
     void Start()
@@ -140,7 +148,13 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButton("Fire2"))
         {
-            if(!flamethrowerHitbox.activeSelf) flameParticles.Play();
+            if(!flamethrowerHitbox.activeSelf)
+            {
+                flameParticles.Play();
+                flameEventInstance.setParameterByName(FIRE_THROW_STOPS, 0f);
+                flameEventInstance.setParameterByName(WHICH_FIRE_LOOPS, Random.Range(1, NUM_FIRE_LOOPS_ONE_INDEXED + 1));
+                flameEventInstance.start();
+            }
 
             //use flamethrower without moving  - bad version for now
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
@@ -151,9 +165,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            flameEventInstance.setParameterByName(FIRE_THROW_STOPS, 1f);
             flameParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             flamethrowerHitbox.SetActive(false);
         }
+
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
         if (difference.x >= 0 && !facingRight && (Input.GetButton("Fire1") || Input.GetButton("Fire2")))

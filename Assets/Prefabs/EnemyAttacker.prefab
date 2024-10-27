@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 7770334353090965957}
   - component: {fileID: -1563738523888273484}
   - component: {fileID: 6984186707278310747}
+  - component: {fileID: 7883288904331756004}
   m_Layer: 10
   m_Name: EnemyAttacker
   m_TagString: Enemy
@@ -377,6 +378,13 @@ MonoBehaviour:
   sprite: {fileID: 222563259293857307}
   flameDamageCooldown: 0.1
   damageTakenParticle: {fileID: 4706774380152521514, guid: 78c5fc5e98d17bb44bad06c3061b77f5, type: 3}
+  damageEvent:
+    Guid:
+      Data1: -403867049
+      Data2: 1088575466
+      Data3: -487489359
+      Data4: 1031589145
+    Path: event:/SFX/Enemy_mob/Enemy_gets_hit
 --- !u!114 &3233516499909622002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +464,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7883288904331756004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6532262074295378825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1226594326
+      Data2: 1246342538
+      Data3: -1288792138
+      Data4: -1534672097
+    Path: event:/SFX/Enemy_mob/Enemy_dies
+  Event: 
+  EventPlayTrigger: 2
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8005537275121725091
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class EnemyNestHealth : MonoBehaviour
     public float originalHealth;
     private float _lastFlameHit = -999f;
     private Vector2 originalScale;
+    public FMODUnity.EventReference damageEvent;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class EnemyNestHealth : MonoBehaviour
     {
         if (nestDestroyed) return;
         health -= dmg;
+        FMODUnity.RuntimeManager.PlayOneShot(damageEvent, transform.position);
         Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
         if (health < 1f)
         {
@@ -59,6 +61,7 @@ public class EnemyNestHealth : MonoBehaviour
             return;
         }
 
+        FMODUnity.RuntimeManager.PlayOneShot(damageEvent, transform.position);
         var particle = Instantiate(damageTakenParticle, null);
         particle.transform.position = transform.position;
         health -= 10f;

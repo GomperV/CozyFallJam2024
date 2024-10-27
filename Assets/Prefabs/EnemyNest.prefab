@@ -107,6 +107,13 @@ MonoBehaviour:
   nestSprite: {fileID: 4751155388637560267}
   flameDamageCooldown: 0.1
   originalHealth: 0
+  damageEvent:
+    Guid:
+      Data1: 621013608
+      Data2: 1217432204
+      Data3: -1925224280
+      Data4: -2067767658
+    Path: event:/SFX/Enemy_base/Enemy_base_gets_hit
 --- !u!1 &2112603201084493380
 GameObject:
   m_ObjectHideFlags: 0
