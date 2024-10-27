@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             _health = Mathf.Clamp(_health - 1, 0, 99);
             SetHealthDisplay();
 
-            if(_health <= segments.Count && _health > 0)
+            if(_health <= 1 && _health > 0)
             {
                 print("hp < 1");
                 iceVignette.SetActive(true);
@@ -86,25 +86,20 @@ public class PlayerController : MonoBehaviour
     IEnumerator IceVignetteEffect()
     {
         iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-        print("Segments:" + segments.Count);
-        while (_health <= segments.Count)
+        while (_health <= 1)
         {
-            float healthStage = 1 / _health - 0.1f;
-            print("Health stage: " + healthStage);
-            for (float i = 0; i < healthStage; i+= 0.01f)
+            for (float i = 0; i < 0.5f; i+= 0.01f)
             {
                 //print(i);
                 yield return new WaitForSeconds(0.01f);
                 iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, i);
             }
-            yield return new WaitForSeconds(0.01f);
-            for (float i = healthStage; i > 0; i -= 0.01f)
+            for (float i = 0.5f; i > 0; i -= 0.01f)
             {
                 //print(i);
                 yield return new WaitForSeconds(0.01f);
                 iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, i);
             }
-            yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(0.01f);
         iceVignette.SetActive(false);
@@ -121,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddSegment()
     {
-        
+
         GameObject segment = Instantiate(segmentPrefab, playerRoot);
         segments.Add(segment);
         _segmentSprites.Add(segment.GetComponentInChildren<SpriteRenderer>());
