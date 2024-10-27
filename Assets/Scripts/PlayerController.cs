@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Audio")]
     public FMODUnity.EventReference flameEvent;
+    public FMODUnity.EventReference playerDamageEvent;
     private FMOD.Studio.EventInstance flameEventInstance;
     private const string FIRE_THROW_STOPS = "fire_throw_stops";
     private const string WHICH_FIRE_LOOPS = "which_fire_loops";
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
         if(Time.time > _lastHit + invulnerabilityDuration)
         {
             _lastHit = Time.time;
+            FMODUnity.RuntimeManager.PlayOneShot(playerDamageEvent, transform.position);
             _health = Mathf.Clamp(_health - 1, 0, 99);
             SetHealthDisplay();
 

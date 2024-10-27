@@ -303,6 +303,13 @@ MonoBehaviour:
       Data3: -1549634159
       Data4: 1550896754
     Path: event:/SFX/Player/Player_fire_throw
+  playerDamageEvent:
+    Guid:
+      Data1: -415109994
+      Data2: 1166449377
+      Data3: 867227814
+      Data4: 1210068908
+    Path: event:/SFX/Player/Player_gets_hit
   minion: {fileID: 0}
 --- !u!114 &3254974162192623666
 MonoBehaviour:

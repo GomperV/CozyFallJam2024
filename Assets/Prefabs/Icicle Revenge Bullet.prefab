@@ -105,9 +105,15 @@ MonoBehaviour:
   speed: 10
   fireDelay: 1.5
   jitter: 0.1
-  hitbox: {fileID: 0}
   particleLocation: {fileID: 1370835739357826272}
   particlePrefab: {fileID: 7389359244948663602, guid: 1ea4f243318d6144288cac59f0f57f80, type: 3}
+  flyingEvent:
+    Guid:
+      Data1: -150130842
+      Data2: 1121437176
+      Data3: 1827341475
+      Data4: -882164921
+    Path: event:/SFX/Enemy_mob/Enemy_ladybug_projectile
 --- !u!50 &2360711508440921492
 Rigidbody2D:
   serializedVersion: 4

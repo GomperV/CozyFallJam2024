@@ -11,6 +11,7 @@ namespace Basics
         public float jitter = 0.1f;
         public Transform particleLocation;
         public GameObject particlePrefab;
+        public FMODUnity.EventReference flyingEvent;
 
         private Rigidbody2D _rb;
         private Vector2 startPos;
@@ -32,6 +33,7 @@ namespace Basics
                 yield return null;
             }
 
+            FMODUnity.RuntimeManager.PlayOneShot(flyingEvent, transform.position);
             _rb.velocity = direction.normalized*speed;
         }
 
