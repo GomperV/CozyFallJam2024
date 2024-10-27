@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{927cf49e-c2a4-4723-ade2-51c268e4e769}">
+		<property name="note" />
+		<property name="name">
+			<value>randon_ignite</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6bffe116-0410-4e23-b09b-820947240951}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{5286da70-35a1-4338-bbb0-fdb406e81b07}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{5286da70-35a1-4338-bbb0-fdb406e81b07}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>50</value>
+		</property>
+	</object>
+</objects>
