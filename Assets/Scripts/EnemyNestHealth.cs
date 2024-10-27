@@ -72,7 +72,8 @@ public class EnemyNestHealth : MonoBehaviour
 
     void Update()
     {
-        if(wavesManager.buffEnemies)
+
+        if (wavesManager.buffEnemies)
         {
             sprite.transform.localScale = Vector3.one*2f;
         } else
@@ -84,6 +85,13 @@ public class EnemyNestHealth : MonoBehaviour
             baseHealthText.text = "Inactive"; 
             GetComponent<EnemySpawner>().isSpawning = false;
             nestSprite.color = new Color(1f, 1f, 1f, 0.25f);
+            return;
+        }
+        else if (wavesManager.waveTimer < 10 && GetComponent<EnemySpawner>().isSpawning && !nestDestroyed)
+        {
+            baseHealthText.text = "SHIELDED";
+            health = originalHealth;
+            nestSprite.color = new Color(1f, 1f, 1f, 0.5f);
             return;
         }
         float healthPercentage = Mathf.Round(health / originalHealth * 100);

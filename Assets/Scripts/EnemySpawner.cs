@@ -17,6 +17,10 @@ public class EnemySpawner : MonoBehaviour
     {
         wavesManager = GameObject.Find("WavesManager").GetComponent<WavesManager>();
     }
+    private void Update()
+    {
+
+    }
     public void SpawnEnemies(float spawnRate)
     {
         buffIncrease = 0;
@@ -39,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
             randomChance = Random.Range(1, 5);
             //spawn enemy guardian with attacker sometimes
             GameObject attacker;
-            if (randomChance == 3)
+            if (randomChance == 3 && wavesManager.waveNumber > 4)
             {
                 print("spawning GUARDIAN");
                 attacker = Instantiate(enemyBeetle, transform.position, Quaternion.identity);
@@ -64,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
             
 
             
-            if(!spawnedDefender)
+            if(!spawnedDefender && wavesManager.waveNumber > 2)
             {
                 yield return new WaitForSeconds(timeBetweenSpawns/2);
                 GameObject newDefender = Instantiate(enemyDefender, patrolPointA.transform.position, Quaternion.identity);
