@@ -13,6 +13,7 @@ public class WavesManager : MonoBehaviour
     public int waitTime;
     private GameObject player;
     private PlayerExperience playerExp;
+    private TutorialManager tutorialManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class WavesManager : MonoBehaviour
         waveNumber = 0;
         enemySpawnRate = 5f; //how often enemies spawn initially
         enemySpawners = FindObjectsOfType<EnemySpawner>();
+        tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
         player = GameObject.Find("Player");
         playerExp = player.GetComponent<PlayerExperience>();
         print("EnemySpawners amount: " + enemySpawners.Length);
@@ -37,7 +39,7 @@ public class WavesManager : MonoBehaviour
 
     private void StartWave()
     {
-        waveNumber++;
+        //waveNumber++;
         
         waveText.text = "WAVE " + waveNumber;
         if(enemySpawnRate > 0.5f) enemySpawnRate -= ((float)waveNumber / 10); //enemies spawn faster witch each wave
@@ -74,7 +76,11 @@ public class WavesManager : MonoBehaviour
     IEnumerator DelayBetweenWaves()
     {
         //delay slightly longer with each wave (for preparations)
-
+        waveNumber++;
+        if(waveNumber == 2)
+        {
+            tutorialManager.StartCoroutine(tutorialManager.ChangeOpacity(tutorialManager.upgradesTip, true));
+        }
         waitTime = 19 + waveNumber;
         waveText.text = "Wave " + (waveNumber + 1) + " in " + waitTime + "s";
         while (waitTime > 0)
@@ -84,6 +90,7 @@ public class WavesManager : MonoBehaviour
             waveText.text = "Wave " + (waveNumber + 1) + " in " + waitTime + "s";
             if (waitTime < 3)
             {
+                if(waveNumber ==2 && waitTime == 2) tutorialManager.StartCoroutine(tutorialManager.ChangeOpacity(tutorialManager.upgradesTip, false)); 
                 waveSkipTip.text = "";
             } else
             {
