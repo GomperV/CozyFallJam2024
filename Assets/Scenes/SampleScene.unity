@@ -1938,9 +1938,9 @@ RectTransform:
   - {fileID: 1966343038}
   - {fileID: 408867525}
   - {fileID: 2058492271}
+  - {fileID: 1312610243}
   - {fileID: 293068114}
   - {fileID: 414393676}
-  - {fileID: 1312610243}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
