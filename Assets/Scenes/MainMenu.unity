@@ -298,6 +298,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 1382770370}
     m_Modifications:
     - target: {fileID: 3464601943716880390, guid: 96db47d388811a746b8f3effc0e2a46d, type: 3}
+      propertyPath: m_text
+      value: 'MADE FOR COZY FALL JAM 2024
+
+
+        ART: Biom
+
+        MUSIC: Planda
+        Pattapus
+
+        SFX: Mandarus
+
+        CODING: Gibibit & Gomperk & AsheTheLoser
+
+        WRITING:
+        AsheTheLoser'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464601943716880390, guid: 96db47d388811a746b8f3effc0e2a46d, type: 3}
       propertyPath: m_fontSize
       value: 30
       objectReference: {fileID: 0}
@@ -1096,6 +1113,8 @@ MonoBehaviour:
       Data3: -2012076626
       Data4: 52241439
     Path: event:/Music/player_loses
+  gameOver: 0
+  victory: 0
 --- !u!1 &2092181130
 GameObject:
   m_ObjectHideFlags: 0
