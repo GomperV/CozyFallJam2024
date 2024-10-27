@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
-
+using TMPro;
 public class PlayerBaseUpgrader : MonoBehaviour
 {
     public UpgradesObject upgrades;
@@ -27,10 +27,11 @@ public class PlayerBaseUpgrader : MonoBehaviour
         {
             _lastOpenedMenu = Time.time;
             ui.ActivateUpgradeMenu(GetRandomUpgrades(), requiredExperience);
+
         }
     }
 
-    private UpgradeData[] GetRandomUpgrades()
+    public UpgradeData[] GetRandomUpgrades()
     {
         var ownedUpgrades = player.upgradesOwned;
 

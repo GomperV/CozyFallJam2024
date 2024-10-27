@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerExperience : MonoBehaviour
 {
-    private float experience = 0;
+    public float experience = 0;
     [SerializeField]
     private TMP_Text expText, bonusExp;
 
