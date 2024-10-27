@@ -1,9 +1,12 @@
+using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
     public float force = 10;
     public float damage = 20f;
+    public ParticleSystem trailParticle;
 
     private Rigidbody2D _rb;
 
@@ -49,6 +52,11 @@ public class BulletLogic : MonoBehaviour
 
     public void DestroyBullet()
     {
+        trailParticle.transform.SetParent(null, true);
+        //trailParticle.transform.localScale = transform.localScale;
+        trailParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        var timer = trailParticle.AddComponent<DestroyAfterTime>();
+        timer.lifetime = 2f;
         Destroy(gameObject);
     }
 }
