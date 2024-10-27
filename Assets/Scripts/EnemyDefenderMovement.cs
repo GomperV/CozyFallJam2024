@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyDefenderMovement : MonoBehaviour
 {
     public GameObject PunktB, PunktA;
+    private Transform player;
     private Rigidbody2D rb;
     private Transform currentPoint;
     public float patrolSpeed;
@@ -12,6 +13,7 @@ public class EnemyDefenderMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player Head Root").transform;
         patrolSpeed = Random.Range(1f, 2f);
         rb = GetComponent<Rigidbody2D>();
         currentPoint = PunktB.transform;
@@ -20,6 +22,14 @@ public class EnemyDefenderMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //move towards player if they get close
+        if(Vector2.Distance(transform.position, player.position) < 3f)
+        {
+            print("leap to the player!");
+            rb.velocity = (player.position - transform.position).normalized * patrolSpeed * 2;
+            return;
+        }
+
         rb.velocity = (currentPoint.position - transform.position).normalized*patrolSpeed;
 
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PunktB.transform)
