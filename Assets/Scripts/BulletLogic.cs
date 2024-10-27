@@ -75,18 +75,19 @@ public class BulletLogic : MonoBehaviour
 
     private void SplashDamage()
     {
-        float damage = 20f;
+        const float DAMAGE = 20f;
+        const float RADIUS = 5f;
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemies)
         {
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if(Vector2.Distance(transform.position, enemy.transform.position) <= 6f)
+            if(Vector2.Distance(transform.position, enemy.transform.position) <= RADIUS)
             {
                 EnemyCombat health = enemy.GetComponent<EnemyCombat>();
                 if (health)
                 {
-                    health.TakeDamage(damage);
+                    health.TakeDamage(DAMAGE);
                 }
             }
         }
@@ -95,12 +96,12 @@ public class BulletLogic : MonoBehaviour
         foreach(GameObject nest in nests)
         {
             float distance = Vector2.Distance(transform.position, nest.transform.position);
-            if(Vector2.Distance(transform.position, nest.transform.position) <= 6f)
+            if(Vector2.Distance(transform.position, nest.transform.position) <= RADIUS)
             {
                 EnemyNestHealth health = nest.GetComponent<EnemyNestHealth>();
                 if(health)
                 {
-                    health.TakeDamage(damage);
+                    health.TakeDamage(DAMAGE);
                 }
 
             }
