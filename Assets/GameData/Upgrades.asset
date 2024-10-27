@@ -23,8 +23,9 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b7d617e6b19aae64987f31427febab43, type: 3}
     id: speedboost
     title: Pumpkin Rush
-    description: Burst forward every 3 seconds, leaving behind a trail of pumpkin
-      spice.
+    description: Gradually accelerate to double your speed, leaving a fiery trail
+      of glowing pumpkin embers as you build momentum. Use this burst of speed to
+      swiftly navigate the frozen landscape and evade icy foes
   - repeatable: 0
     sprite: {fileID: 21300000, guid: 6490f58666a57c8429ca45482c62dc11, type: 3}
     id: minion
