@@ -34,8 +34,10 @@ public class WavesManager : MonoBehaviour
     void Update()
     {
         waveTimer += Time.deltaTime;
-        if(waveTimer > (20 + waveNumber * 10))
+        if(waveTimer > (15 + waveNumber * 15))
         {
+            waveSkipTip.text = "Enemies are growing stronger! Destroy nests!";
+            waveSkipTip.color = Color.red;
             buffEnemies = true;
         }
         if(Input.GetKeyDown(KeyCode.S) && waitTime > 3)
@@ -83,9 +85,11 @@ public class WavesManager : MonoBehaviour
 
     IEnumerator DelayBetweenWaves()
     {
+        waveTimer = 0;
         //delay slightly longer with each wave (for preparations)
         waveNumber++;
-        if(waveNumber == 2)
+        waveSkipTip.color = Color.white;
+        if (waveNumber == 2)
         {
             tutorialManager.StartCoroutine(tutorialManager.ChangeOpacity(tutorialManager.upgradesTip, true));
         }

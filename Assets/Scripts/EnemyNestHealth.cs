@@ -70,8 +70,8 @@ public class EnemyNestHealth : MonoBehaviour
     {
         if(wavesManager.buffEnemies)
         {
-            transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-            wavesManager.waveSkipTip.text = "Enemies became stronger! Destroy nests!";
+            transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            
         } else
         {
             transform.localScale = originalScale;

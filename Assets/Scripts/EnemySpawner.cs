@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
             if (wavesManager.buffEnemies) {
                 buffIncrease++;
                 //enemies get +50hp with each enemy spawned
-                attacker.GetComponent<EnemyCombat>().health = 100f + buffIncrease * 50; 
+                attacker.GetComponent<EnemyCombat>().health = 50f + buffIncrease * 50; 
             } else
             {
                 //normal situation
