@@ -37,7 +37,8 @@ public class EnemyCombat : MonoBehaviour
         {
             health -= 10f;
             _lastFlameHit = Time.time;
-            Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
+            var particle = Instantiate(damageTakenParticle, null);
+            particle.transform.position = transform.position;
 
             if(health < 1)
             {

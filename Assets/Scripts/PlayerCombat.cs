@@ -8,15 +8,22 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private BulletLogic fireball;
     [SerializeField] private float timeBetweenFiring = 0.5f;
     public float maxDistance = 20f;
+    public FMODUnity.EventReference sfx;
 
     private PlayerController player;
     private float _lastFired = -999f;
     private float _maxDistanceSqr;
+    private FMOD.Studio.EventInstance _sfxInstance;
 
     private void Awake()
     {
         _maxDistanceSqr = maxDistance*maxDistance;
         player = GetComponent<PlayerController>();
+    }
+
+    private void Start()
+    {
+        _sfxInstance = FMODUnity.RuntimeManager.CreateInstance(sfx);
     }
 
     void Update()
@@ -26,6 +33,7 @@ public class PlayerCombat : MonoBehaviour
             GameObject closest = GetClosestEnemy();
             if(closest)
             {
+                _sfxInstance.start();
                 var bullet = Instantiate(fireball, transform.position, Quaternion.identity);
                 bullet.AimTowards(closest);
                 _lastFired = Time.time;
