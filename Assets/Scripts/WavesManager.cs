@@ -34,7 +34,7 @@ public class WavesManager : MonoBehaviour
     void Update()
     {
         waveTimer += Time.deltaTime;
-        if(waveTimer > (15 + waveNumber * 15))
+        if(waveTimer > (20 + waveNumber * 15))
         {
             waveSkipTip.text = "Enemies are growing stronger! Destroy nests!";
             waveSkipTip.color = Color.red;
