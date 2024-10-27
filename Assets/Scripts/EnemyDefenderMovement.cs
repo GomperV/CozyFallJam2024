@@ -23,7 +23,7 @@ public class EnemyDefenderMovement : MonoBehaviour
     void Update()
     {
         //move towards player if they get close
-        if(Vector2.Distance(transform.position, player.position) < 3f)
+        if(Vector2.Distance(transform.position, player.position) < 3.5f)
         {
             print("leap to the player!");
             rb.velocity = (player.position - transform.position).normalized * patrolSpeed * 2;
