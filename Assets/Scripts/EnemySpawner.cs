@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         while(isSpawning)
         {
             if (!isSpawning) break;
-            randomChance = Random.Range(1, 5);
+            randomChance = Random.Range(1, 6);
             //spawn enemy guardian with attacker sometimes
             GameObject attacker;
             if (randomChance == 3 && wavesManager.waveNumber > 4)
