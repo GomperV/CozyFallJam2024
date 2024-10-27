@@ -26,7 +26,7 @@ public class EnemyDefenderMovement : MonoBehaviour
         if(Vector2.Distance(transform.position, player.position) < 3.5f)
         {
             print("leap to the player!");
-            rb.velocity = (player.position - transform.position).normalized * patrolSpeed * 2;
+            rb.velocity = (player.position - transform.position).normalized * 2.5f;
             return;
         }
 

@@ -51,14 +51,14 @@ public class EnemyCombat : MonoBehaviour
 
     void Update()
     {
-        if (health < 75f)
+        if (health < 75f && health > 25f)
         {
-            sprite.color = new Color(1f, 1f, 1f, 0.75f);
+            sprite.color = new Color(1f, 1f, 1f, 0.7f);
         }
         else if (health < 25f)
         {
-            GetComponent<EnemySpawner>().isSpawning = false;
-            sprite.color = new Color(1f, 1f, 1f, 0.5f);
+            //GetComponent<EnemySpawner>().isSpawning = false;
+            sprite.color = new Color(1f, 1f, 1f, 0.4f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
