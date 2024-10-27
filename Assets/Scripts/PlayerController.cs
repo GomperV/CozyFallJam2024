@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 
 using TriInspector;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float invulnerabilityDuration = 1f;
     public int startingHealth = 5;
     public float desiredDistanceToMouse = 1f;
+    public GameObject iceVignette;
 
     [Header("Speed boost")]
     public float boostDuration = 1f;
@@ -67,11 +70,38 @@ public class PlayerController : MonoBehaviour
             _health = Mathf.Clamp(_health - 1, 0, 99);
             SetHealthDisplay();
 
-            if(_health <= 0)
+            if(_health <= 1 && _health > 0)
+            {
+                print("hp < 1");
+                iceVignette.SetActive(true);
+                StartCoroutine(IceVignetteEffect());
+            } else if(_health <= 0)
             {
                 ui.GameLost();
             }
         }
+    }
+
+    IEnumerator IceVignetteEffect()
+    {
+        iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        while (_health <= 1)
+        {
+            for (float i = 0; i < 1; i+= 0.01f)
+            {
+                //print(i);
+                yield return new WaitForSeconds(0.01f);
+                iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, i);
+            }
+            for (float i = 1; i > 0; i -= 0.01f)
+            {
+                //print(i);
+                yield return new WaitForSeconds(0.01f);
+                iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, i);
+            }
+        }
+        yield return new WaitForSeconds(0.01f);
+        iceVignette.SetActive(false);
     }
 
     public void SetHealthDisplay()
