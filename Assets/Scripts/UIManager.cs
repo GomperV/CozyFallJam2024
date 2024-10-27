@@ -38,12 +38,15 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
+        MusicManager.Instance.victory = false;
+        MusicManager.Instance.gameOver = false;
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
 
     public void GameLost()
     {
+        MusicManager.Instance.gameOver = true;
         gameOver = true;
         losePanel.SetActive(true);
         //infoText.text = "YOU'VE LOST!";
@@ -51,6 +54,7 @@ public class UIManager : MonoBehaviour
     }
     public void GameWon()
     {
+        MusicManager.Instance.victory = true;
         gameOver = true;
         winPanel.SetActive(true);
         Time.timeScale = 0f;
