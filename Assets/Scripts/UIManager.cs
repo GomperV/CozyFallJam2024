@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     private void UpdateXPCostDisplay()
     {
         string color = playerBase.requiredExperience > exp.experience ? "red" : "white";
-        xpCostText.text = $"Cost: {playerBase.requiredExperience}/<color={color}>{exp.experience}</color> EXP";
+        xpCostText.text = $"Cost: <color={color}>{exp.experience}</color>/{playerBase.requiredExperience} EXP";
     }
 
     public void Restart()
