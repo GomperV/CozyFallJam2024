@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{f40c7339-dc18-4cbc-b753-91ea24d874e8}">
+		<property name="name">
+			<value>fire_throw_stops</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6bffe116-0410-4e23-b09b-820947240951}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{964cdc8c-bf0e-4fa5-b29c-cea60b92c78b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{964cdc8c-bf0e-4fa5-b29c-cea60b92c78b}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

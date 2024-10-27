@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{3047292f-2726-481e-b6ce-f05fedf8bbac}">
+		<property name="assetPath">
+			<value>Player_fire_throw_ignite_stereo_03.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.0132426303854876</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7a61ddd5-1576-4eef-9d32-360ab9c87af4}</destination>
+		</relationship>
+	</object>
+</objects>

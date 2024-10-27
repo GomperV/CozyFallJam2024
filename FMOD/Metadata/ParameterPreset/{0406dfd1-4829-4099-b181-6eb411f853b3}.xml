@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{0406dfd1-4829-4099-b181-6eb411f853b3}">
+		<property name="name">
+			<value>which_fire_loops</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6bffe116-0410-4e23-b09b-820947240951}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{141578ff-50a1-4989-83c6-9e33454fdb7d}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{141578ff-50a1-4989-83c6-9e33454fdb7d}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="minimum">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>4</value>
+		</property>
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>
