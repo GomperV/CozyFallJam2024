@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 
 using TriInspector;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float invulnerabilityDuration = 1f;
     public int startingHealth = 5;
     public float desiredDistanceToMouse = 1f;
+    public GameObject iceVignette;
 
     [Header("Speed boost")]
     public float accelerationDuration = 1f;
@@ -68,11 +71,43 @@ public class PlayerController : MonoBehaviour
             _health = Mathf.Clamp(_health - 1, 0, 99);
             SetHealthDisplay();
 
-            if(_health <= 0)
+            if(_health <= segments.Count && _health > 0)
+            {
+                print("hp < 1");
+                iceVignette.SetActive(true);
+                StartCoroutine(IceVignetteEffect());
+            } else if(_health <= 0)
             {
                 ui.GameLost();
             }
         }
+    }
+
+    IEnumerator IceVignetteEffect()
+    {
+        iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+        print("Segments:" + segments.Count);
+        while (_health <= segments.Count)
+        {
+            float healthStage = 1 / _health - 0.1f;
+            print("Health stage: " + healthStage);
+            for (float i = 0; i < healthStage; i+= 0.01f)
+            {
+                //print(i);
+                yield return new WaitForSeconds(0.01f);
+                iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, i);
+            }
+            yield return new WaitForSeconds(0.01f);
+            for (float i = healthStage; i > 0; i -= 0.01f)
+            {
+                //print(i);
+                yield return new WaitForSeconds(0.01f);
+                iceVignette.GetComponent<Image>().color = new Color(1f, 1f, 1f, i);
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        yield return new WaitForSeconds(0.01f);
+        iceVignette.SetActive(false);
     }
 
     public void SetHealthDisplay()
@@ -86,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddSegment()
     {
+        
         GameObject segment = Instantiate(segmentPrefab, playerRoot);
         segments.Add(segment);
         _segmentSprites.Add(segment.GetComponentInChildren<SpriteRenderer>());

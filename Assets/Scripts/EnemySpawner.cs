@@ -15,7 +15,8 @@ public class EnemySpawner : MonoBehaviour
     {
         //nest will spawn a new defender after each wave
         spawnedDefender = false;
-        GetComponent<EnemyNestHealth>().health = 100f;
+        GetComponent<EnemyNestHealth>().health = 300f;
+        GetComponent<EnemyNestHealth>().originalHealth = GetComponent<EnemyNestHealth>().health;
         GetComponent<EnemyNestHealth>().nestDestroyed = false;
         isSpawning = true;
         timeBetweenSpawns = spawnRate;

@@ -12,7 +12,7 @@ public class EnemyNestHealth : MonoBehaviour
     public bool nestDestroyed = false;
     public SpriteRenderer nestSprite;
     public float flameDamageCooldown = 0.1f;
-
+    public float originalHealth;
     private float _lastFlameHit = -999f;
 
     private void Awake()
@@ -62,15 +62,24 @@ public class EnemyNestHealth : MonoBehaviour
 
     void Update()
     {
-        baseHealthText.text = "" + health + "%";
-        if (health > 99f)
+        
+        if(originalHealth == 0)
+        {
+            baseHealthText.text = "Inactive"; 
+            GetComponent<EnemySpawner>().isSpawning = false;
+            nestSprite.color = new Color(1f, 1f, 1f, 0.25f);
+            return;
+        }
+        float healthPercentage = Mathf.Round(health / originalHealth * 100);
+        baseHealthText.text = "" + healthPercentage + "%";
+        if (healthPercentage > 99f)
         {
             nestSprite.color = new Color(1f, 1f, 1f, 1f);
-        }else if (health < 50f && health >= 1f)
+        }else if (healthPercentage < 50f && healthPercentage >= 1f)
         {
             nestSprite.color = new Color(1f, 1f, 1f, 0.5f);
         }
-        else if (health < 1f)
+        else if (healthPercentage < 1f)
         {
             GetComponent<EnemySpawner>().isSpawning = false;
             nestSprite.color = new Color(1f, 1f, 1f, 0.25f);
