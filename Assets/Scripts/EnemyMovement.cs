@@ -11,21 +11,36 @@ public class EnemyMovement : MonoBehaviour
     private bool reachedTarget = false;
     private bool isSlowedDown = false;
     public GameObject patrolPointA, patrolPointB;
+    public BugJitter jitter;
 
-    // Start is called before the first frame update
+    private Vector3 expectedPosition;
+
     void Start()
     {
         playerBase = GameObject.Find("PlayerBase").transform;
+        StartCoroutine(MoveRoutine());
+        expectedPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator MoveRoutine()
     {
-        if (!reachedTarget)
+        while(!reachedTarget)
         {
-            MoveTowardsTarget();
+            Vector3 direction = (playerBase.position - expectedPosition).normalized;
+
+            expectedPosition += movementSpeed*Time.deltaTime*direction;
+            jitter.SetCenter(expectedPosition);
+
+            float distanceToTarget = Vector3.Distance(transform.position, playerBase.position);
+            if(distanceToTarget < 0.5f)
+            {
+                reachedTarget = true;
+            }
+
+            yield return null;
         }
     }
+
     //movement towards base / player / other objectives (if needed)
     void MoveTowardsTarget()
     {

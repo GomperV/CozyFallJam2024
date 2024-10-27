@@ -28,4 +28,9 @@ public class BugJitter : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
     }
+
+    public void SetCenter(Vector2 center)
+    {
+        _center = center;
+    }
 }
