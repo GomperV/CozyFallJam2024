@@ -287,6 +287,7 @@ MonoBehaviour:
   invulnerabilityDuration: 1
   startingHealth: 3
   desiredDistanceToMouse: 0.1
+  iceVignette: {fileID: 0}
   accelerationDuration: 1
   boostAmount: 6
   speedTrail: {fileID: 2577317159602405693}
@@ -310,6 +311,13 @@ MonoBehaviour:
   fireball: {fileID: 4286990764400784007, guid: a9b22189ba5a95e47b3e24259d9af543, type: 3}
   timeBetweenFiring: 2.5
   maxDistance: 15
+  sfx:
+    Guid:
+      Data1: 605650625
+      Data2: 1182251538
+      Data3: 1965953194
+      Data4: -705155022
+    Path: event:/Player_atack_fireball
 --- !u!50 &4143042493681958474
 Rigidbody2D:
   serializedVersion: 4

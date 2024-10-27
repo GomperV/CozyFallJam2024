@@ -59,7 +59,8 @@ public class EnemyNestHealth : MonoBehaviour
             return;
         }
 
-        Instantiate(damageTakenParticle, transform.position, Quaternion.identity, null);
+        var particle = Instantiate(damageTakenParticle, null);
+        particle.transform.position = transform.position;
         health -= 10f;
         _lastFlameHit = Time.time;
 
