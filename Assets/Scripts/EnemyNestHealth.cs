@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+
+using UnityEngine;
 public class EnemyNestHealth : MonoBehaviour
 {
     public float health;
+    public GameObject deathParticle;
+    public SpriteRenderer sprite;
     [SerializeField]
     private TMP_Text baseHealthText;
     private GameObject UI;
@@ -42,6 +43,9 @@ public class EnemyNestHealth : MonoBehaviour
         health = 0f;
         nestDestroyed = true;
         wavesManager.SpawnerDestroyed();
+        var particle = Instantiate(deathParticle);
+        particle.transform.rotation = sprite.transform.rotation;
+        particle.transform.position = sprite.transform.position + particle.transform.up*-0.5f;
     }
 
     public void TakeFlamethrowerDamage()

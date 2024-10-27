@@ -99,10 +99,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  deathParticle: {fileID: 7389359244948663602, guid: 7389e30111fa4d3499348c0d25f7cc0f, type: 3}
+  sprite: {fileID: 4751155388637560267}
   baseHealthText: {fileID: 909647921871288437}
   nestDestroyed: 0
   nestSprite: {fileID: 4751155388637560267}
   flameDamageCooldown: 0.1
+  originalHealth: 0
 --- !u!1 &2112603201084493380
 GameObject:
   m_ObjectHideFlags: 0
