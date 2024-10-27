@@ -16,7 +16,7 @@ public class MinionBullet : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        damage = 10f;
+        damage = 5f;
     }
 
     public void AimTowards(GameObject target)
