@@ -5,7 +5,7 @@ using TMPro;
 public class WavesManager : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text waveText, waveSkipTip;
+    public TMP_Text waveText, waveSkipTip;
     private EnemySpawner[] enemySpawners;
     public int waveNumber = 0;
     private float enemySpawnRate;
@@ -14,6 +14,8 @@ public class WavesManager : MonoBehaviour
     private GameObject player;
     private PlayerExperience playerExp;
     private TutorialManager tutorialManager;
+    public float waveTimer = 0;
+    public bool buffEnemies = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,11 @@ public class WavesManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        waveTimer += Time.deltaTime;
+        if(waveTimer > (20 + waveNumber * 10))
+        {
+            buffEnemies = true;
+        }
         if(Input.GetKeyDown(KeyCode.S) && waitTime > 3)
         {
             waitTime = 3;
@@ -40,7 +47,8 @@ public class WavesManager : MonoBehaviour
     private void StartWave()
     {
         //waveNumber++;
-        
+        buffEnemies = false;
+        waveTimer = 0;
         waveText.text = "WAVE " + waveNumber;
         if(enemySpawnRate > 0.5f) enemySpawnRate -= ((float)waveNumber / 10); //enemies spawn faster witch each wave
 
@@ -82,12 +90,12 @@ public class WavesManager : MonoBehaviour
             tutorialManager.StartCoroutine(tutorialManager.ChangeOpacity(tutorialManager.upgradesTip, true));
         }
         waitTime = 19 + waveNumber;
-        waveText.text = "Wave " + (waveNumber + 1) + " in " + waitTime + "s";
+        waveText.text = "Wave " + (waveNumber) + " in " + waitTime + "s";
         while (waitTime > 0)
         {
             yield return new WaitForSeconds(1);
             waitTime--;
-            waveText.text = "Wave " + (waveNumber + 1) + " in " + waitTime + "s";
+            waveText.text = "Wave " + (waveNumber) + " in " + waitTime + "s";
             if (waitTime < 3)
             {
                 if(waveNumber ==2 && waitTime == 2) tutorialManager.StartCoroutine(tutorialManager.ChangeOpacity(tutorialManager.upgradesTip, false)); 

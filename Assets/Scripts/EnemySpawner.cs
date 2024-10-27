@@ -11,8 +11,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemyBeetle, enemyDefender, enemyGuardian, patrolPointA, patrolPointB;
     private int randomChance = 0;
+    private WavesManager wavesManager;
+    private float buffIncrease = 0;
+    private void Start()
+    {
+        wavesManager = GameObject.Find("WavesManager").GetComponent<WavesManager>();
+    }
     public void SpawnEnemies(float spawnRate)
     {
+        buffIncrease = 0;
         //nest will spawn a new defender after each wave
         spawnedDefender = false;
         GetComponent<EnemyNestHealth>().health = 300f;
@@ -31,17 +38,31 @@ public class EnemySpawner : MonoBehaviour
             if (!isSpawning) break;
             randomChance = Random.Range(1, 5);
             //spawn enemy guardian with attacker sometimes
-            if(randomChance == 3)
+            GameObject attacker;
+            if (randomChance == 3)
             {
                 print("spawning GUARDIAN");
-                GameObject attacker = Instantiate(enemyBeetle, transform.position, Quaternion.identity);
+                attacker = Instantiate(enemyBeetle, transform.position, Quaternion.identity);
                 GameObject guardian = Instantiate(enemyGuardian, transform.position, Quaternion.identity);
                 guardian.GetComponent<EnemyGuardianMovement>().PunktA = attacker.GetComponent<EnemyMovement>().patrolPointA;
                 guardian.GetComponent<EnemyGuardianMovement>().PunktB = attacker.GetComponent<EnemyMovement>().patrolPointB;
             } else //spawn only attacker
             {
-                Instantiate(enemyBeetle, transform.position, Quaternion.identity);
+                attacker = Instantiate(enemyBeetle, transform.position, Quaternion.identity);
             }
+
+            //set attacker enemies health
+            if (wavesManager.buffEnemies) {
+                buffIncrease++;
+                //enemies get +50hp with each enemy spawned
+                attacker.GetComponent<EnemyCombat>().health = 100f + buffIncrease * 50; 
+            } else
+            {
+                //normal situation
+                attacker.GetComponent<EnemyCombat>().health = 50f;
+            }
+            
+
             
             if(!spawnedDefender)
             {

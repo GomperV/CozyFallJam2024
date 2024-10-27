@@ -15,6 +15,7 @@ public class EnemyNestHealth : MonoBehaviour
     public float flameDamageCooldown = 0.1f;
     public float originalHealth;
     private float _lastFlameHit = -999f;
+    private Vector2 originalScale;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class EnemyNestHealth : MonoBehaviour
 
     void Start()
     {
+        originalScale = transform.localScale;
         wavesManager = GameObject.Find("WavesManager").GetComponent<WavesManager>();
         UI = GameObject.Find("UI");
     }
@@ -66,7 +68,14 @@ public class EnemyNestHealth : MonoBehaviour
 
     void Update()
     {
-        
+        if(wavesManager.buffEnemies)
+        {
+            transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            wavesManager.waveSkipTip.text = "Enemies became stronger! Destroy nests!";
+        } else
+        {
+            transform.localScale = originalScale;
+        }
         if(originalHealth == 0)
         {
             baseHealthText.text = "Inactive"; 

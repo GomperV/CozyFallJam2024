@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    public float health;
+    public float health = 50f;
     [SerializeField] public float damage = 25f;
     public SpriteRenderer sprite;
     public float flameDamageCooldown = 0.1f;
@@ -18,7 +18,7 @@ public class EnemyCombat : MonoBehaviour
         player = GameObject.Find("Player");
         playerExp = player.GetComponent<PlayerExperience>();
         damage = 25f;
-        health = 50f;
+        //health = 50f;
     }
     public void TakeDamage(float dmg)
     {
