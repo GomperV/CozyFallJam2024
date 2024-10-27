@@ -175,13 +175,15 @@ public class PlayerController : MonoBehaviour
         difference.Normalize();
         if (difference.x >= 0 && !facingRight && (Input.GetButton("Fire1") || Input.GetButton("Fire2")))
         { // mouse is on right side of player
-            head.GetComponentInChildren<SpriteRenderer>().flipY = false;
+            //head.GetComponentInChildren<SpriteRenderer>().flipY = false;
             facingRight = true;
+            head.transform.localScale = new Vector3(1, 1, 1);
         }
         if (difference.x < 0 && facingRight && (Input.GetButton("Fire1") || Input.GetButton("Fire2")))
         { // mouse is on left side
-            head.GetComponentInChildren<SpriteRenderer>().flipY = true;
+            //head.GetComponentInChildren<SpriteRenderer>().flipY = true;
             facingRight = false;
+            head.transform.localScale = new Vector3(-1, 1, 1);
         }
         // Only move and rotate the character when its far enough away to prevent jitter
         if (Input.GetButton("Fire1") && Vector3.Distance(mousePos, head.transform.position) > desiredDistanceToMouse)

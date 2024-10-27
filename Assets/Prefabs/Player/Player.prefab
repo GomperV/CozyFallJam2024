@@ -303,6 +303,7 @@ MonoBehaviour:
       Data3: -1549634159
       Data4: 1550896754
     Path: event:/SFX/Player/Player_fire_throw
+  minion: {fileID: 0}
 --- !u!114 &3254974162192623666
 MonoBehaviour:
   m_ObjectHideFlags: 0
