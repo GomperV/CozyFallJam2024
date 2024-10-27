@@ -68,7 +68,7 @@ public class WavesManager : MonoBehaviour
         spawnersToKill--;
         if(spawnersToKill < 1)
         {
-            if (waveNumber > 0) playerExp.GainExperience(30 + waveNumber * 10, true);
+            if (waveNumber > 0) playerExp.GainExperience(30 + waveNumber * 20, true);
             StartCoroutine(DelayBetweenWaves());
         }
     }
@@ -98,7 +98,7 @@ public class WavesManager : MonoBehaviour
             }
             
         }
-        waveSkipTip.text = "Destroy all active Ice crystals!";
+        waveSkipTip.text = "Destroy all active Ice crystals quickly!";
         StartWave();
         
 
