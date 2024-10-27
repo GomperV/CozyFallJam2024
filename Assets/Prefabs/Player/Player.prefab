@@ -296,6 +296,13 @@ MonoBehaviour:
   flamethrowerHitbox: {fileID: 2035129096929385137}
   flameParticles: {fileID: 2853418828418621803}
   flamethrowerMovementMultiplier: 0.5
+  flameEvent:
+    Guid:
+      Data1: -954759672
+      Data2: 1338107847
+      Data3: -1549634159
+      Data4: 1550896754
+    Path: event:/SFX/Player/Player_fire_throw
 --- !u!114 &3254974162192623666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +324,7 @@ MonoBehaviour:
       Data2: 1182251538
       Data3: 1965953194
       Data4: -705155022
-    Path: event:/Player_atack_fireball
+    Path: event:/SFX/Player/Player_atack_fireball
 --- !u!50 &4143042493681958474
 Rigidbody2D:
   serializedVersion: 4
@@ -425,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d3e1485a41d3e49b07793868728653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  experience: 0
   expText: {fileID: 0}
   bonusExp: {fileID: 0}
 --- !u!1 &5709686286584110131
