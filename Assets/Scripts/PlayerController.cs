@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
     private int _health;
     private Rigidbody2D _rb;
 
-
+    [SerializeField]
+    private GameObject minion;
     private bool facingRight = true;
     private void Awake()
     {
@@ -265,6 +266,10 @@ public class PlayerController : MonoBehaviour
         if(data.id == "speedboost")
         {
             _boostUnlocked = true;
+        }
+        if (data.id == "minion")
+        {
+            minion.SetActive(true);
         }
 
         upgradesOwned.Add(data.id);

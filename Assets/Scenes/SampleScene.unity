@@ -3852,6 +3852,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1538671382}
     - target: {fileID: 3583079535798744034, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: minion
+      value: 
+      objectReference: {fileID: 1339902017}
+    - target: {fileID: 3583079535798744034, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
       propertyPath: iceVignette
       value: 
       objectReference: {fileID: 1312610242}
@@ -4271,7 +4275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1339902018
 MonoBehaviour:
   m_ObjectHideFlags: 0
