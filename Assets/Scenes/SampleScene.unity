@@ -3022,6 +3022,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 602773511824149548, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: m_Color.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 602773511824149548, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1102863447105331978, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.728
@@ -3041,6 +3049,10 @@ PrefabInstance:
     - target: {fileID: 5565071947881612259, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5709686286584110131, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6214224878106394470, guid: 9b08553bc77fb454a807a4994cb12b80, type: 3}
       propertyPath: expText
