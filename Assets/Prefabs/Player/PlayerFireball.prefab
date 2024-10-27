@@ -4935,6 +4935,7 @@ MonoBehaviour:
   force: 10
   damage: 20
   trailParticle: {fileID: 2617054992501054770}
+  explosionPrefab: {fileID: 41708831957046515, guid: 5258c8c3e8e882847bbb2dcc80506694, type: 3}
 --- !u!114 &6561960124408548855
 MonoBehaviour:
   m_ObjectHideFlags: 0

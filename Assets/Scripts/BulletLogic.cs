@@ -1,3 +1,5 @@
+using System.Collections;
+
 using Unity.VisualScripting;
 
 using UnityEngine;
@@ -7,6 +9,7 @@ public class BulletLogic : MonoBehaviour
     public float force = 10;
     public float damage = 20f;
     public ParticleSystem trailParticle;
+    public GameObject explosionPrefab;
 
     private Rigidbody2D _rb;
 
@@ -57,6 +60,50 @@ public class BulletLogic : MonoBehaviour
         trailParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         var timer = trailParticle.AddComponent<DestroyAfterTime>();
         timer.lifetime = 2f;
+
+        var explosion = Instantiate(explosionPrefab, null, false);
+        explosion.transform.position = transform.position;
+
+        SplashDamage();
         Destroy(gameObject);
+    }
+
+    private IEnumerator DestroyRoutine()
+    {
+        yield return null;
+    }
+
+    private void SplashDamage()
+    {
+        float damage = 20f;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if(Vector2.Distance(transform.position, enemy.transform.position) <= 6f)
+            {
+                EnemyCombat health = enemy.GetComponent<EnemyCombat>();
+                if (health)
+                {
+                    health.TakeDamage(damage);
+                }
+            }
+        }
+
+        GameObject[] nests = GameObject.FindGameObjectsWithTag("EnemyNest");
+        foreach(GameObject nest in nests)
+        {
+            float distance = Vector2.Distance(transform.position, nest.transform.position);
+            if(Vector2.Distance(transform.position, nest.transform.position) <= 6f)
+            {
+                EnemyNestHealth health = nest.GetComponent<EnemyNestHealth>();
+                if(health)
+                {
+                    health.TakeDamage(damage);
+                }
+
+            }
+        }
     }
 }
