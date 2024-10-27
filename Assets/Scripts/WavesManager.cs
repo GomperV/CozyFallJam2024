@@ -54,11 +54,18 @@ public class WavesManager : MonoBehaviour
         buffEnemies = false;
         waveTimer = 0;
         waveText.text = "WAVE " + waveNumber;
-        if(enemySpawnRate > 0.5f) enemySpawnRate -= ((float)waveNumber / 10); //enemies spawn faster witch each wave
-
+        if(enemySpawnRate > 0.5f) enemySpawnRate -= ((float)waveNumber / 15); //enemies spawn faster witch each wave
+        if(waveNumber == 9)
+        {
+            enemySpawnRate = 1.5f;
+        } else if (waveNumber == 10)
+        {
+            enemySpawnRate = 1.0f;
+        }
         //some funny logic calculating how many spawners are active based on wave number (FOR NOW, might wanna set this manually)
         if (waveNumber > 2) activeSpawners = Mathf.RoundToInt(0.6f + waveNumber / 2f);
         else activeSpawners = waveNumber;
+        if (activeSpawners > 4) activeSpawners = 4;
         spawnersToKill = activeSpawners;
         print(activeSpawners);
 
