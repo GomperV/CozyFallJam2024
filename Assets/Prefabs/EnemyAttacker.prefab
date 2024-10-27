@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 3372877192659858330}
   - component: {fileID: 2214005009175807988}
   - component: {fileID: 1055400757694346760}
+  - component: {fileID: 7770334353090965957}
   - component: {fileID: -1563738523888273484}
   - component: {fileID: 6984186707278310747}
   m_Layer: 10
@@ -373,6 +374,21 @@ MonoBehaviour:
   damage: 25
   sprite: {fileID: 222563259293857307}
   flameDamageCooldown: 0.1
+--- !u!114 &7770334353090965957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6532262074295378825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170c57942c0ced74689dcdffc54d7f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDestroyPrefabs:
+  - {fileID: 7317953205246976529, guid: b73490408563471479a431813d9cb859, type: 3}
+  targetPosition: {fileID: 0}
 --- !u!50 &-1563738523888273484
 Rigidbody2D:
   serializedVersion: 4

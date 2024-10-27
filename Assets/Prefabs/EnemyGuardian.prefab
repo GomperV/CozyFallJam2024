@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDestroyPrefabs:
   - {fileID: 1313713850146650368, guid: 8d3eb7505a39edb41b8731e18525b23f, type: 3}
+  - {fileID: 7317953205246976529, guid: b73490408563471479a431813d9cb859, type: 3}
   targetPosition: {fileID: 0}
 --- !u!50 &8557590090230824457
 Rigidbody2D:
