@@ -62,6 +62,14 @@ public class EnemyNestHealth : MonoBehaviour
 
     void Update()
     {
+        
+        if(originalHealth == 0)
+        {
+            baseHealthText.text = "Inactive"; 
+            GetComponent<EnemySpawner>().isSpawning = false;
+            nestSprite.color = new Color(1f, 1f, 1f, 0.25f);
+            return;
+        }
         float healthPercentage = Mathf.Round(health / originalHealth * 100);
         baseHealthText.text = "" + healthPercentage + "%";
         if (healthPercentage > 99f)
