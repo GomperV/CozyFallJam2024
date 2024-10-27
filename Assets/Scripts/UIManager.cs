@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject gameInfoPanel;
+    [SerializeField] private GameObject gameInfoPanel, losePanel, winPanel;
     [SerializeField] private TMP_Text infoText;
     [SerializeField] private GameObject upgradeMenu;
 
@@ -36,8 +36,14 @@ public class UIManager : MonoBehaviour
     public void GameLost()
     {
         gameOver = true;
-        gameInfoPanel.SetActive(true);
-        infoText.text = "YOU'VE LOST!";
+        losePanel.SetActive(true);
+        //infoText.text = "YOU'VE LOST!";
+        Time.timeScale = 0f;
+    }
+    public void GameWon()
+    {
+        gameOver = true;
+        winPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 

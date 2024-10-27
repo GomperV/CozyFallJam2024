@@ -14,6 +14,7 @@ public class WavesManager : MonoBehaviour
     private GameObject player;
     private PlayerExperience playerExp;
     private TutorialManager tutorialManager;
+    private UIManager uiManager;
     public float waveTimer = 0;
     public bool buffEnemies = false;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class WavesManager : MonoBehaviour
         activeSpawners = 0;
         waveNumber = 0;
         enemySpawnRate = 5f; //how often enemies spawn initially
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         enemySpawners = FindObjectsOfType<EnemySpawner>();
         tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
         player = GameObject.Find("Player");
@@ -79,6 +81,10 @@ public class WavesManager : MonoBehaviour
         if(spawnersToKill < 1)
         {
             if (waveNumber > 0) playerExp.GainExperience(30 + waveNumber * 20, true);
+            if(waveNumber > 9)
+            {
+                uiManager.GameWon();
+            }
             StartCoroutine(DelayBetweenWaves());
         }
     }
