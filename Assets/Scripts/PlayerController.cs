@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     public float desiredDistanceToMouse = 1f;
 
     [Header("Speed boost")]
-    public float boostDuration = 1f;
+    public float accelerationDuration = 1f;
     public float boostAmount = 2f;
-    public float boostCooldown = 3f;
+    public ParticleSystem speedTrail;
 
     [Header("Game UI")]
     public UIManager ui;
@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
     public float flamethrowerMovementMultiplier = 0.9f;
 
     private bool _boostUnlocked;
-    private float _lastBoost = -999f;
     private float _lastHit = -999f;
+    private float _movementTimer = -999f;
     private List<SpriteRenderer> _segmentSprites;
     private int _health;
     private Rigidbody2D _rb;
@@ -98,9 +98,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (_rb.velocity.sqrMagnitude > 0f)
+        if (_rb.velocity.sqrMagnitude == 0f)
         {
-            ActivateSpeedBoost();
+            ResetSpeedBoost();
         }
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
             head.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             flamethrowerHitbox.SetActive(true);
             speed *= flamethrowerMovementMultiplier;
+            ResetSpeedBoost();
         }
         else
         {
@@ -158,20 +159,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ActivateSpeedBoost()
+    private void ResetSpeedBoost()
     {
-        if(_boostUnlocked && Time.time > _lastBoost + boostCooldown)
-        {
-            _lastBoost = Time.time;
-        }
+        _movementTimer = Time.time;
+        speedTrail.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
     public float GetMoveSpeed()
     {
         float speed = moveSpeed;
-        if(Time.time < _lastBoost + boostDuration)
+        if(_boostUnlocked)
         {
-            speed += boostAmount;
+            float t = (Time.time - _movementTimer)/accelerationDuration;
+            float boost = Mathf.Lerp(0f, boostAmount, t);
+            speed += boost;
+
+            if(t >= 1f && !speedTrail.isPlaying)
+            {
+                speedTrail.Play();
+            }
         }
         return speed;
     }
