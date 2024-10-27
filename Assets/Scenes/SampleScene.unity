@@ -3756,6 +3756,73 @@ RectTransform:
   m_AnchoredPosition: {x: 56.333496, y: 104.520996}
   m_SizeDelta: {x: 589.333, y: 86.95801}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1193390670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1193390672}
+  - component: {fileID: 1193390671}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1193390671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193390670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e717fabadad1b49b18fe1dbe24c05d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicEvent:
+    Guid:
+      Data1: 726930060
+      Data2: 1237489222
+      Data3: -492486002
+      Data4: -2106323111
+    Path: event:/Music/gameplay_music
+  winEvent:
+    Guid:
+      Data1: 1862712444
+      Data2: 1167530126
+      Data3: 409485497
+      Data4: 87161831
+    Path: event:/Music/player_wins
+  loseEvent:
+    Guid:
+      Data1: 854170072
+      Data2: 1213809742
+      Data3: -2012076626
+      Data4: 52241439
+    Path: event:/Music/player_loses
+  gameOver: 0
+  victory: 0
+--- !u!4 &1193390672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193390670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1241821355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8242,3 +8309,4 @@ SceneRoots:
   - {fileID: 1538671383}
   - {fileID: 1358121606}
   - {fileID: 1339902020}
+  - {fileID: 1193390672}

@@ -16,13 +16,21 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        musicInstance = FMODUnity.RuntimeManager.CreateInstance(musicEvent);
-        winInstance = FMODUnity.RuntimeManager.CreateInstance(winEvent);
-        loseInstance = FMODUnity.RuntimeManager.CreateInstance(loseEvent);
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
 
-        musicInstance.start();
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            musicInstance = FMODUnity.RuntimeManager.CreateInstance(musicEvent);
+            winInstance = FMODUnity.RuntimeManager.CreateInstance(winEvent);
+            loseInstance = FMODUnity.RuntimeManager.CreateInstance(loseEvent);
+
+            musicInstance.start();
+        }
     }
 
     void Update()
