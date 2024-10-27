@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacks")]
     public GameObject flamethrowerHitbox;
+    public ParticleSystem flameParticles;
     [InfoBox("Multiplier to player speed while they are using the flamethrower")]
     public float flamethrowerMovementMultiplier = 0.9f;
 
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (_rb.velocity.sqrMagnitude > 0f)
         {
             ActivateSpeedBoost();
         }
@@ -138,6 +139,8 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButton("Fire2"))
         {
+            if(!flamethrowerHitbox.activeSelf) flameParticles.Play();
+
             //use flamethrower without moving  - bad version for now
             float angle = Vector2.SignedAngle(Vector2.up, mousePos - head.transform.position);
             head.transform.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -146,6 +149,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            flameParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             flamethrowerHitbox.SetActive(false);
         }
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
