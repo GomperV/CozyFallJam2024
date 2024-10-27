@@ -4613,6 +4613,7 @@ GameObject:
   - component: {fileID: 1339902018}
   - component: {fileID: 1339902022}
   - component: {fileID: 1339902021}
+  - component: {fileID: 1339902023}
   m_Layer: 0
   m_Name: PlayerMinion
   m_TagString: Untagged
@@ -4632,8 +4633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a48bed67f6eff44aaf3938321b7beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PunktB: {fileID: 0}
-  PunktA: {fileID: 0}
   patrolSpeed: 0
 --- !u!212 &1339902019
 SpriteRenderer:
@@ -4764,6 +4763,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1339902023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339902017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef34b23c0c11394e9a7542236f3f77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireball: {fileID: 9051105290380373009, guid: e382464604dff8a499e1f6225449ab41, type: 3}
+  timeBetweenFiring: 0.3
+  maxDistance: 20
 --- !u!1 &1358121604
 GameObject:
   m_ObjectHideFlags: 0

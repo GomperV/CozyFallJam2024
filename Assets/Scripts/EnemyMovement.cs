@@ -14,7 +14,14 @@ public class EnemyMovement : MonoBehaviour
     public BugJitter jitter;
 
     private Vector3 expectedPosition;
-
+    public void SlowDown()
+    {
+        if (!isSlowedDown)
+        {
+            isSlowedDown = true;
+            movementSpeed /= 2;
+        }
+    }
     void Start()
     {
         playerBase = GameObject.Find("PlayerBase").transform;

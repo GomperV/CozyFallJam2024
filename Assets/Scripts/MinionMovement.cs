@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MinionMovement : MonoBehaviour
 {
-    public GameObject PunktB, PunktA;
     private Transform player;
     private Rigidbody2D rb;
     private Transform currentPoint;
@@ -16,7 +15,6 @@ public class MinionMovement : MonoBehaviour
         player = GameObject.Find("Player Head Root").transform;
         patrolSpeed = Random.Range(1f, 2f);
         rb = GetComponent<Rigidbody2D>();
-        currentPoint = PunktB.transform;
     }
 
     // Update is called once per frame
@@ -25,7 +23,7 @@ public class MinionMovement : MonoBehaviour
         //move towards player if they get close
         if (Vector2.Distance(transform.position, player.position) > 3.5f)
         {
-            rb.velocity = (player.position - transform.position).normalized * 2f;
+            rb.velocity = (player.position - transform.position).normalized * 2.5f;
         } else
         {
             rb.velocity = (player.position - transform.position).normalized * 0f;
